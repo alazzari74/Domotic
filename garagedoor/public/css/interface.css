@@ -1,0 +1,44 @@
+body {
+    font-family: 'Open Sans';
+}
+
+button.scalarButton
+{   height: 30%;
+    font-size: 7vw;
+    width: 45%;
+}
+
+.buttonBlock{    
+    margin: 25px;
+}
+
+.title{
+    text-align: center;
+    font-size: 40px;
+}
+
+.buttonTitle {
+   
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.mainContainer {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.display {
+    font-size: 30px;
+    width: 50%;
+    vertical-align: middle;
+}
+
+.status {
+    font-size: 30px;
+    color: red;
+    vertical-align: middle;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "onvif_camerasnapshot",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "lazzari.andrea@libero.it",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.2",
+    "node-onvif": "0.1.7",
+    "url": "0.10.3"
+  }
+}
