@@ -1,0 +1,60 @@
+{
+    "template": "<style>\n  .camFeed { position: relative; height: 100%; width: 100%; }\n  .camFeed widget-image,\n  .camFeed widget-image img { \n  \tmargin:auto; \n    position: relative; \n    width: 100%; \n    height: 100%; \n  }\n  .camFeed span { \n    position: absolute; \n    width: 100%; \n    display: block; \n    left: 0; \n    margin: 5px; \n    color: {{ config.cmFeed_labelColor || '#fff' }};\n    font-weight: bolder\n  }\n  .camFeed span.Bottom { bottom: 0; }\n  .camFeed span.Top { top: 0; }\n  .camFeed span.Left { text-align: left; }\n  .camFeed span.Center { text-align: center; }\n  .camFeed span.Right { text-align: right; }\n  .image-content { height: 100%; position: relative }\n  \n</style>\n<style ng-if=\"config.cmFeed_noBorder\">\n\t.camFeed .box-content.image { border: none; padding: 0}\n </style>\n\n<a href=\"{{config.cmFeed_imageUrl}}\"><div class=\"camFeed\"  ng-init=\"camFeedModel={\n                              name: config.cmFeed_label, \n                              image_source: 'static', \n                              intervaltype: config.cmFeed_refreshType, \n                              refresh: config.cmFeed_refreshInterval, \n                              url: config.cmFeed_imageUrl\n                              }\">\n  <widget-image class=\"widgetImage\" ng-model=\"camFeedModel\"></widget-image>\n  <span ng-if=\"config.cmFeed_labelPos!='Disabled' && config.cmFeed_label\" class=\"{{config.cmFeed_labelPos}}\" style=\" color: {{ config.cmFeed_labelColor || '#fff' }}\">{{config.cmFeed_label}}</span>\n</div></a>\n\n",
+    "name": "CameraButton",
+    "author": "Andrea Lazzari",
+    "description": "Displays a Camera snapshot",
+    "settings": [
+        {
+            "type": "string",
+            "id": "cmFeed_imageUrl",
+            "label": "Image URL",
+            "description": "Image URL of the feed",
+            "default": "//source.unsplash.com/random"
+        },
+        {
+            "type": "number",
+            "id": "cmFeed_refreshInterval",
+            "label": "Refresh Interval",
+            "default": "1",
+            "description": "Refresh Interval"
+        },
+        {
+            "type": "choice",
+            "id": "cmFeed_refreshType",
+            "label": "Refresh Interval Type",
+            "default": "seconds",
+            "choices": "milliseconds,seconds",
+            "description": "Refresh interval type in seconds/ms. 0 (zero) to disable"
+        },
+        {
+            "type": "checkbox",
+            "id": "cmFeed_noBorder",
+            "label": "No Border",
+            "default": true,
+            "description": "Remove border?"
+        },
+        {
+            "type": "string",
+            "id": "cmFeed_label",
+            "label": "Feed Label/Text",
+            "default": "Camera Feed",
+            "description": "Camera Feed Label/Text"
+        },
+        {
+            "type": "choice",
+            "id": "cmFeed_labelPos",
+            "label": "Label Position",
+            "default": "Bottom left",
+            "choices": "Disabled, Top Left, Top Center, Top Right, Bottom Left, Bottom Center, Bottom Right",
+            "description": "Position of the label"
+        },
+        {
+            "type": "color",
+            "id": "cmFeed_labelColor",
+            "label": "Label Color",
+            "default": "#FFF",
+            "description": "Label Color"
+        }
+    ],
+    "readme_url": ""
+}

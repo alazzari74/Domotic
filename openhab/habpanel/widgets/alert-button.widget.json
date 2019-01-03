@@ -1,0 +1,49 @@
+{
+    "author": "Andrea Lazzari",
+    "name": "Alert button",
+    "description": "",
+    "settings": [
+        {
+            "type": "item",
+            "label": "openHAB Item to monitor",
+            "id": "monitorItem"
+        },
+        {
+            "type": "number",
+            "id": "valueSize",
+            "label": "Value font size px",
+            "description": "Font Size of monitored value"
+        },
+        {
+            "type": "string",
+            "id": "noActiveText",
+            "label": "Button Text when alert is OFF"
+        }
+        ,
+        {
+            "type": "string",
+            "id": "activeText",
+            "label": "Button Text when alert is ON"
+        },
+        {
+            "type": "item",
+            "label": "openHAB Item to send command",
+            "id": "commandItem"
+        },
+        {
+            "type": "string",
+            "id": "commandValue",
+            "label": "Command Value"
+        },
+        {
+            "type": "string",
+            "id": "attentionValue",
+            "label": "Attention Value",
+            "description": "If the item state matches this value, then the widget will blink."
+        }
+        
+    ],
+    "template": "<style>\n\t.attention-active {\n    animation-name: attention;\n    animation-duration: 3s;\n    animation-iteration-count: infinite;\n  }\n  @keyframes attention {\n    20%  {background-color: transparent;}\n    60%  {background-color: #CCCC00;}\n\t}\n  .attention-table {\n  \twidth: 100%;\n  }\n  .attention-table-cell {\n  \tpadding: 5px;\n  \twidth: 50%;\n  }\n  .attention-table-btn {\n  \twidth: 100%;\n  }\n \n</style>\n<div>\n  {{ngModel.name}}\n</div>\n<table class=\"attention-table\" ng-class=\"(config.attentionValue == itemState(config.monitorItem)) ? 'attention-active' : ''\">\n  <tr>\n    <td class=\"attention-table-cell\">\n      <span class=\"value\" style=\"font-size: 16px; font-size: 2.0vw\" >{{itemState(config.monitorItem)}}</span>\n    </td>\n </tr>\n  <tr>\n    <td class=\"attention-table-cell\">\n      <button type=\"button\" class=\"btn btn-default btn-lg attention-table-btn\" ng-click=\"sendCmd(config.commandItem, config.commandValue)\">\n        {{(config.attentionValue == itemState(config.monitorItem)) ? config.activeText: config.noActiveText}}\n      </button>\n    </td>\n  </tr>\n</table>",
+    "source_url": "",
+    "readme_url": ""
+}
