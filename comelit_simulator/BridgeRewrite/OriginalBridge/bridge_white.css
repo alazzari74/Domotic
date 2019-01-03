@@ -1,0 +1,1329 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,
+abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,
+strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+caption,tbody,tfoot,thead,article,aside,canvas,details,embed,figure,figcaption,
+footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
+	margin:0;
+	padding:0;
+	border:0;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+}
+.clear{
+	clear:both;
+}
+/********************************************************************
+	Page layout
+********************************************************************/
+html{
+	height:100%;
+	font-size:18px;
+}
+body{
+	height:100%;
+}
+.page_width{
+	width:400px;
+	margin:0 auto;
+	border-left:1px solid #EEE;
+	border-right:1px solid #EEE;
+}
+div#page_header{
+	z-index:999999999;
+	position:fixed;
+	top:0;
+	width:100%;
+}
+div#page{
+	min-height:100%;
+	position:relative;
+}
+div#login_box{
+	padding-top:100px;
+	padding-bottom:35px;
+	text-align:center;
+}
+div#page_content{
+	width:400px;
+	padding-top:100px;
+	padding-bottom:50px;
+}
+div#page_content.in_app{
+	padding:40px 0;
+}
+div#home_content{
+	padding-top:20px;
+	padding-left:10px;
+	margin:0 auto;
+}
+div#page_footer{
+	position:fixed;
+	bottom:0;
+	width:100%;
+	z-index:999999999;
+}
+div#footer_content{
+	background-color:#EEE;
+	padding-top:3px;
+}
+/********************************************************************
+	Common style
+********************************************************************/
+.icons{
+	background-image:url(/images/icons_white.png?rev=7353);
+}
+.button{
+	border:1px solid #AAA;
+	border-radius:12px;
+	box-shadow:inset 0px 1px 3px 0px rgba(70,70,70,0.4), 1px 2px 3px 0 rgba(70,70,70,0.4);
+	margin:0;
+	padding:0;
+	height:48px;
+	background-color:#FFFFFF;
+}
+.input{
+	border:1px solid #AAA;
+	border-radius:12px;
+	box-shadow:inset 0px 1px 5px 0 rgba(70,70,70,0.6);
+	background-color:#FEFEFE;
+	height:42px;
+}
+input.submit_button{
+	font-size:18px;
+	width:100px;
+	height:33px;
+}
+/*.form_input{
+	border-radius:6px;
+	padding:2px 5px;
+	box-shadow:inset 0px 1px 3px 0 rgba(70,70,70,0.2);
+	margin:2px;
+	border:1px solid #AAA;
+}*/
+.decimal_help{
+	font-size:11px;
+	margin:5px 10px;
+	width:150px;
+}
+/********************************************************************
+	Header page
+********************************************************************/
+div#tab_header{
+	height:50px;
+	background-color:#EEE;
+	position:relative;
+}
+a.top_head_button{
+	display:block;
+	height:48px;
+	width:50px;
+	position:absolute;
+	text-indent:100px;
+	overflow:hidden;
+}
+a#home_button{
+	background-position:-138px -190px;
+	left:0;
+}
+a#back_button{
+	background-position:-190px -190px;
+	right:0;
+}
+h1{
+	width:298px;
+	margin:0 auto;
+	text-align:center;
+	padding-top:10px;
+	height:30px;
+	line-height:30px;
+	font-size:20px;
+}
+div#fade_out{
+	height:20px;
+	background-position:0 -50px;
+}
+a#app_back_button{
+	position:fixed;
+	bottom:0;
+	margin-left:348px;
+	text-indent:100px;
+	overflow:hidden;
+	height:40px;
+	width:50px;
+	display:block;
+	background-position:-190px -192px;
+	background-color:#EEE;
+	border-radius:12px 0 0 0;
+	border:1px solid #AAA;
+	box-shadow:inset 0px 1px 3px 0px rgba(70,70,70,0.4), 0px 0px 3px 0 rgba(70,70,70,0.3);
+}
+/********************************************************************
+	Home header page
+********************************************************************/
+div#head_info{
+	background:#FFFFFF;
+	height:20px;
+	line-height:20px;
+	font-size:14px;
+	padding:0 5px;
+	padding-top:5px;
+	width:390px;
+}
+div#head_datetime{
+	float:left;
+}
+div#head_counter{
+	float:right;
+}
+/********************************************************************
+	Header menu
+********************************************************************/
+div#head_menu{
+	background-color:#FFFFFF;
+	padding:5px 0;
+	padding-top:20px;
+	overflow:hidden;
+}
+div#page_menu{
+	height:50px;
+	width:380px;
+	margin:0 auto;
+	background-color:#C6C6C6;
+}
+div#head_menu a{
+	height:48px;
+	width:45px;
+	margin:1px 5px;
+	text-indent:100px;
+	overflow:hidden;
+	float:left;
+}
+a#menu_back,
+div#counter_date a#date_prev{
+	background-position:-138px -242px;
+}
+a#menu_next,
+div#counter_date a#date_next{
+	background-position:-188px -242px;
+}
+h2#menu_name{
+	width:270px;
+	height:50px;
+	float:left;
+	line-height:50px;
+	text-align:center;
+	font-size:24px;
+	font-weight:normal;
+}
+/*******************************************************************
+	Footer page
+*******************************************************************/
+a#comelit_logo{
+	display:inline-block;
+	width:137px;
+	height:20px;
+	margin:5px;
+	background-position:-185px -72px;
+	overflow:hidden;
+	text-indent:150px;
+}
+a#logout{
+	display:inline-block;
+	width:32px;
+	height:24px;
+	margin:5px;
+	background-position:-288px -203px;
+	overflow:hidden;
+	text-indent:150px;
+	float:right;
+}
+div#page_footer span {
+	float:right;
+	margin:6px;
+	font-size:15px;
+	color:#009FE3;
+}
+/********************************************************************
+	Login box
+********************************************************************/
+div#login_box p{
+	margin:10px 0;
+}
+div#login_box input{
+	font-size:30px;
+	line-height:42px;
+	height:42px;
+	vertical-align:top;
+	margin:0;
+}
+div#login_box input.login_input{
+	padding:0 8px;
+	width:140px;
+}
+div#login_box input.login_submit{
+	padding:0;
+	width:44px;
+	height:44px;
+	background-position:-242px -194px;
+}
+/********************************************************************
+	Home page
+********************************************************************/
+a.home_button{
+	display:inline-block;
+	width:113px;
+	height:70px;
+	margin-bottom:10px;
+	margin-right:10px;
+	text-align:center;
+	font-size:16px;
+	text-decoration:none;
+	color:#000000;
+	position:relative;
+}
+a.home_button span.home_icon{
+	position:absolute;
+	top:8px;
+	left:40px;
+	display:inline-block;
+	width:35px;
+	height:35px;
+}
+a.home_button p{
+	position:absolute;
+	bottom:8px;
+	width:100%;
+}
+div#page_content.home{
+	padding-left:15px;
+}
+a#safe_link span.home_icon,
+a.safe_home_button span.home_icon{
+	background-position:0 -72px;
+}
+a#safe_link.partial span.home_icon,
+a.safe_home_button.on span.home_icon{
+	background-position:-37px -72px;
+}
+a#safe_link.total span.home_icon{
+	background-position:-74px -72px;
+}
+a#safe_link.anomaly span.home_icon{
+	background-position:-111px -72px;
+}
+a#safe_link.memory span.home_icon{
+	background-position:-148px -72px;
+}
+a#safe_link.alarm{
+	background-color:#E21020;
+}
+a#clima_link span.home_icon{
+	background-position:0 -109px;
+}
+a#clima_link.on span.home_icon{
+	background-position:-37px -109px;
+}
+a#clima_link.all{
+	color:#FFFFFF;
+	background-color:#00AEEF;
+}
+a#clima_link.all span.home_icon{
+	background-position:-402px -109px;
+}
+a#other_link span.home_icon{
+	background-position:0 -146px;
+}
+a#other_link.on span.home_icon{
+	background-position:-37px -146px;
+}
+a#other_link.all{
+	color:#FFFFFF;
+	background-color:#00AEEF;
+}
+a#other_link.all span.home_icon{
+	background-position:-402px -146px;
+}
+a#shutter_link span.home_icon{
+	background-position:0 -183px;
+}
+a#shutter_link.on span.home_icon{
+	background-position:-37px -183px;
+}
+a#shutter_link.all{
+	color:#FFFFFF;
+	background-color:#00AEEF;
+}
+a#shutter_link.all span.home_icon{
+	background-position:-402px -183px;
+}
+a#light_link span.home_icon{
+	background-position:0 -220px;
+}
+a#light_link.on span.home_icon{
+	background-position:-37px -220px;
+}
+a#light_link.all{
+	color:#FFFFFF;
+	background-color:#00AEEF;
+}
+a#light_link.all span.home_icon{
+	background-position:-402px -220px;
+}
+a#irrigation_link span.home_icon{
+	background-position:0 -257px;
+}
+a#irrigation_link.on span.home_icon{
+	background-position:-37px -257px;
+}
+a#irrigation_link.all{
+	color:#FFFFFF;
+	background-color:#00AEEF;
+}
+a#irrigation_link.all span.home_icon{
+	background-position:-402px -257px;
+}
+a#automation_link span.home_icon{
+	background-position:0 -294px;
+}
+a#automation_link.on span.home_icon{
+	background-position:-37px -294px;
+}
+a#automation_link.all{
+	color:#FFFFFF;
+	background-color:#00AEEF;
+}
+a#automation_link.all span.home_icon{
+	background-position:-402px -294px;
+}
+a#counter_link span.home_icon{
+	background-position:0 -405px;
+}
+a#scenario_link span.home_icon{
+	background-position:0 -368px;
+}
+a#scenario_link.on span.home_icon{
+	background-position:-37px -368px;
+}
+a#setup_link span.home_icon{
+	background-position:-37px -405px;
+}
+/********************************************************************
+	Icon Page
+********************************************************************/
+button.bridge_button{
+	width:255px;
+	height:45px;
+	padding:0 10px;
+	display:block;
+}
+button.long_button{
+	width:380px;
+	margin:5px auto;
+	cursor:pointer;
+	text-align:left;
+}
+button.long_button.button_status_on{
+	background-color:#00AEEF;
+	color:#FFFFFF;
+}
+button.bridge_button span{
+	float:left;
+	line-height:45px;
+	font-size:16px;
+	width:260px;
+	overflow:hidden;
+}
+button.bridge_button div.thermo,
+button.bridge_button div.humi{
+	float:right;
+	text-align:center;
+	height:45px;
+	width:42px;
+}
+button.bridge_button div.thermo_value,
+button.bridge_button div.humi_value {
+	margin-top:-2px;
+}
+button.bridge_button div.thermo_status,
+button.bridge_button div.humi_status{
+	height:19px;
+	width:19px;
+	margin:3px auto;
+}
+button.bridge_button div.thermo_status {
+	background-position:-442px -302px;
+}
+button.bridge_button.button_status_on div.thermo_status {
+	background-position:-442px -377px;
+}
+button.bridge_button div.thermo_status.active.upper {
+	background-position:-442px -327px;
+}
+button.bridge_button div.thermo_status.active.lower {
+	background-position:-442px -352px;
+}
+button.bridge_button div.humi_status {
+	background-position:-467px -302px;
+}
+button.bridge_button.button_status_on div.humi_status {
+	background-position:-467px -377px;
+}
+button.bridge_button div.humi_status.active.upper {
+	background-position:-467px -327px;
+}
+button.bridge_button div.humi_status.active.lower {
+	background-position:-467px -352px;
+}
+button.icon_switch{
+	width:48px;
+	height:48px;
+	line-height:48px;
+	font-size:18px;
+	padding:0;
+	cursor:pointer;
+}
+button.icon_switch.icons{
+	text-indent:100px;
+}
+/*******************************************************************************
+	Thermo page
+*******************************************************************************/
+div.clima_hide{
+	overflow:hidden;
+}
+div.clima_hide table{
+	width:370px;
+	margin:0 auto;
+}
+div.clima_hide td.button_column{
+	width:60px;
+	text-align:center;
+}
+button.onoff_button,
+button.auto_button,
+button.man_button,
+button.regime_button,
+button.semi_button{
+	text-indent:0;
+}
+button.onoff_button.status_on,
+button.auto_button.status_on,
+button.man_button.status_on,
+button.semi_button.status_on{
+	background-color:#00AEEF;
+	color:#FFFFFF;
+}
+table.clima_table div.value{
+	height:48px;
+	width:220px;
+	margin:0 auto;
+	line-height:48px;
+	font-size:28px;
+	text-align:center;
+	position:relative;
+	background-color:#C6C6C6;
+}
+table.clima_table div.setpoint,
+div#counter_date{
+	width:220px;
+	height:48px;
+	margin:0 auto;
+}
+table.clima_table div.setpoint a.clima_regulator,
+div#counter_date a{
+	height:48px;
+	width:45px;
+	display:block;
+	float:left;
+	cursor:pointer;
+	text-indent:100px;
+	overflow:hidden;
+}
+table.clima_table div.setpoint div.vertical_divider,
+div#counter_date div.vertical_divider{
+	height:48px;
+	width:3px;
+	float:left;
+	background-position:-324px -100px;
+}
+table.clima_table div.setpoint a.regulator_minus{
+	background-position:-138px -392px;
+}
+table.clima_table div.setpoint a.regulator_plus{
+	background-position:-188px -392px;
+}
+table.clima_table div.setpoint span.setpoint{
+	height:48px;
+	line-height:48px;
+	text-align:center;
+	width:114px;
+	display:block;
+	float:left;
+	font-size:21px;
+}
+div.clima_hide.thermo div.clima_upper_on{
+	width:34px;
+	height:34px;
+	position:absolute;
+	bottom:7px;
+	right:10px;
+	background-position:-285px -151px;
+}
+div.clima_hide.thermo div.clima_lower_on{
+	width:34px;
+	height:34px;
+	position:absolute;
+	bottom:7px;
+	right:10px;
+	background-position:-285px -101px;
+}
+div.clima_hide.thermo div.thermo_dewpoint_on{
+	width:34px;
+	height:34px;
+	position:absolute;
+	bottom:7px;
+	left:10px;
+	background-position:-447px -257px;
+}
+div.clima_hide.humi div.clima_upper_on{
+	width:34px;
+	height:34px;
+	position:absolute;
+	bottom:7px;
+	right:10px;
+	background-position:-447px -57px;
+}
+div.clima_hide.humi div.clima_lower_on{
+	width:34px;
+	height:34px;
+	position:absolute;
+	bottom:7px;
+	right:10px;
+	background-position:-447px -7px;
+}
+div.clima_function_content{
+	width:222px;
+	margin:0 auto;
+}
+div.clima_function{
+	width:109px;
+	height:48px;
+	float:left;
+	cursor:pointer;
+}
+div.clima_function.active{
+	background-color:#C6C6C6;
+}
+div.clima_function.thermo{
+	border-bottom-right-radius:0px;
+	border-top-right-radius:0px;
+}
+div.clima_function_thermo{
+	background-position:-454px -398px;
+	height:34px;
+	width:34px;
+	margin:7px auto;
+}
+div.clima_function.humi{
+	border-bottom-left-radius:0px;
+	border-top-left-radius:0px;
+}
+div.clima_function_humi{
+	background-position:-418px -398px;
+	height:34px;
+	width:34px;
+	margin:7px auto;
+}
+button.regime_button{
+	text-indent:100px;
+	display:block;
+	width:48px;
+	margin:auto;
+	background-color:#00AEEF;
+}
+div.clima_hide.humi button.regime_button.upper{
+	background-position:-441px -151px;
+}
+div.clima_hide.humi button.regime_button.lower{
+	background-position:-441px -101px;
+}
+div.clima_hide.thermo button.regime_button.upper{
+	background-position:-186px -145px
+}
+div.clima_hide.thermo button.regime_button.lower{
+	background-position:-185px -94px;
+}
+table.clima_table button.semi_button{
+	text-indent:100px;
+	display:block;
+	height:48px;
+	width:48px;
+	margin:auto;
+	background-color:#FFFFFF;
+	background-position:-235px -94px;
+}
+table.clima_table button.semi_button.status_on{
+	background-color:#00AEEF;
+	background-position:-235px -144px;
+}
+td.clima_slider{
+	height:50px;
+}
+div.clima_slider_control{
+	width:330px;
+	margin:auto;
+}
+hr.thermo_divider{
+	border:1px solid #AAAAAA;
+}
+button.icon_switch.fan_button{
+	background-position:-440px -200px;
+	text-indent:25px;
+	vertical-align:bottom;
+	line-height:65px;
+	font-size: 16px;
+	font-weight: bold;
+}
+/*******************************************************************************
+	Icons page
+*******************************************************************************/
+div#environments,
+div#icons{
+	width:381px;
+	margin:0 auto;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+div#icons{
+	margin-top:60px;
+}
+div#icons.environment_0{
+	margin-top:0;
+}
+div#environments button.icon_switch,
+div#icons button.icon_switch{
+	float:left;
+	margin:5px;
+	overflow:hidden;
+}
+button.switch_down{
+	background-position:-138px -342px;
+}
+button.switch_up{
+	background-position:-188px -342px;
+}
+button.switch_down.active{
+	color:#00AEEF;
+	background-position:-138px -292px;
+}
+button.switch_up.active{
+	color:#00AEEF;
+	background-position:-188px -292px;
+}
+button.switch_off.active,
+button.switch_on.active{
+	color:#00AEEF;
+}
+div#environments button.short_button,
+div#icons button.short_button.rgb{
+	cursor:pointer;
+}
+button.short_button{
+	float:left;
+	margin:5px;
+	position:relative;
+}
+button.short_button span{
+	width:205px;
+	overflow:hidden;
+	text-align:Left;
+}
+button.short_button div.icon_type,
+button.long_button div.icon_type{
+	overflow:hidden;
+	position:absolute;
+	height:25px;
+	width:30px;
+	bottom:8px;
+	right:10px;
+}
+button.long_button.button_scenario{
+	margin:15px auto;
+	position:relative;
+}
+button.short_button.button_status_on{
+	background-color:#00AEEF;
+	color:#FFFFFF;
+}
+button.button_status_off div.icon_type_other{
+	background-position:-74px -109px;
+}
+button.button_status_some div.icon_type_other{
+	background-position:-106px -109px;
+}
+button.button_status_on div.icon_type_other{
+	background-position:-138px -109px;
+}
+button.button_status_off.temp_element div.icon_type_other{
+	background-position:-74px -358px;
+}
+button.button_status_on.temp_element div.icon_type_other{
+	background-position:-106px -358px;
+}
+button.button_status_off div.icon_type_shutter{
+	background-position:-74px -136px;
+}
+button.button_status_some div.icon_type_shutter{
+	background-position:-106px -136px;
+}
+button.button_status_on div.icon_type_shutter{
+	background-position:-138px -136px;
+}
+button.button_status_off div.icon_type_light{
+	background-position:-74px -163px;
+}
+button.button_status_some div.icon_type_light{
+	background-position:-106px -163px;
+}
+button.button_status_on div.icon_type_light{
+	background-position:-138px -163px;
+}
+button.button_status_off.temp_element div.icon_type_light{
+	background-position:-74px -385px;
+}
+button.button_status_on.temp_element div.icon_type_light{
+	background-position:-106px -385px;
+}
+button.button_status_off div.icon_type_light.rgb{
+	background-position:-74px -190px;
+}
+button.button_status_on div.icon_type_light.rgb{
+	background-position:-106px -190px;
+}
+button.button_status_off div.icon_type_light.presence{
+	background-position:-407px -26px;
+}
+button.button_status_on div.icon_type_light.presence{
+	background-position:-407px 0;
+}
+button.button_status_off div.icon_type_light.presence.active{
+	background-position:-407px -78px;
+}
+button.button_status_on div.icon_type_light.presence.active{
+	background-position:-407px -52px;
+}
+button.button_status_off div.icon_type_irrigation{
+	background-position:-74px -220px;
+}
+button.button_status_on div.icon_type_irrigation{
+	background-position:-106px -220px;
+}
+button.button_status_off.temp_element div.icon_type_irrigation{
+	background-position:-74px -412px;
+}
+button.button_status_on.temp_element div.icon_type_irrigation{
+	background-position:-106px -412px;
+}
+button.button_status_off div.icon_type_automation{
+	background-position:-74px -247px;
+}
+button.button_status_on div.icon_type_automation{
+	background-position:-106px -247px;
+}
+button.button_status_off div.icon_type_scenario{
+	background-position:-74px -301px;
+}
+button.button_status_on div.icon_type_scenario{
+	background-position:-106px -301px;
+}
+button.button_status_off div.icon_type_scenario.alarm_login{
+	background-position:-74px -331px;
+}
+button.button_status_on div.icon_type_scenario.alarm_login{
+	background-position:-106px -331px;
+}
+div.rgb_slider,
+div.slider{
+	margin:0 auto;
+	width:250px;
+	margin-bottom:15px;
+	clear:both;
+}
+div.rgb_icon{
+	height:0;
+	overflow:hidden;
+	position:relative;
+	text-align:center;
+}
+div.rgb_icon input{
+	visibility:hidden;
+	height:0;
+	padding:0;
+	width:250px;
+	border:0;
+	margin-top:140px;
+}
+
+/*******************************************************************************
+	Counter Page
+*******************************************************************************/
+div#counter{
+	margin-top:60px;
+	padding-bottom:40px;
+}
+div#counter_date span{
+	float:left;
+	display:block;
+	width:124px;
+	height:48px;
+	line-height:48px;
+	text-align:center;
+	font-size:90%;
+}
+div#graph_label{
+	height:20px;
+	padding:0 15px 5px 45px;
+	margin-top:10px;
+}
+div#title_graph{
+	float:left;
+}
+div#tot_value{
+	float:right;
+}
+table#counter_table{
+	margin:20px auto;
+	font-size:80%;
+	text-align:center;
+}
+table#counter_table td,
+table#counter_table th{
+	padding:1px 3px;
+	border:1px solid #000000;
+	min-width:55px;
+}
+div#counter_selector{
+	text-align:center;
+	margin:10px 0;
+}
+div#counter_selector select{
+	font-size:105%;
+}
+div#hide_load{
+	background-color:rgba(10,10,10,0.5);
+	width:100%;
+	height:100%;
+	position:absolute;
+	z-index:999999999;
+	background-image:url(/images/load.gif);
+	background-repeat:no-repeat;
+	background-position:center;
+}
+div#current{
+	position:relative;
+}
+/*******************************************************************************
+	Setup page
+*******************************************************************************/
+a.setup_link{
+	display:block;
+	width:380px;
+	margin:10px auto;
+	background-position:0 -66px;
+	color:#000000;
+	text-decoration:none;
+	line-height:46px;
+	text-align:center;
+	font-size:20px;
+}
+div.firmware_box{
+	width:358px;
+	height:auto;
+	text-align:center;
+	font-size:85%;
+	background-color:#EEEEEE;
+	margin:20px auto;
+	padding:10px;
+}
+h2.setup{
+	margin:0 auto;
+	text-align:center;
+	width:370px;
+	border-bottom:4px solid #000000;
+	font-size:22px;
+	margin-top:15px;
+}
+hr.horizontal_rule{
+	margin:0 auto;
+	border:1px solid #AAAAAA;
+	width:350px;
+}
+hr.title_rule{
+	margin:30px auto 5px auto;
+	width:370px;
+	border:2px solid #000000;
+}
+hr.spacer{
+	margin:30px auto;
+}
+div.cell{
+	display:table;
+	margin:5px auto;
+	padding:3px 0;
+	width:380px;
+}
+div.col_sx{
+	float:left;
+	text-align:left;
+	font-size:16px;
+}
+div.col_dx{
+	float:right;
+	text-align:right;
+	font-size:14px;
+}
+div.submit{
+	text-align:center;
+	margin:15px 0;
+}
+div#astronomical{
+	text-align:center;
+}
+div#message_text{
+	color:#00AEEF;
+	font-size:20px;
+	text-align:center;
+}
+table.week_fare{
+	font-size:70%;
+	margin:0 auto;
+}
+div.text_box{
+	width:370px;
+	margin:0 auto;
+	text-align:center;
+}
+div#tipo{
+	text-align:center;
+}
+input.dimmer_act{
+	height:0;
+	padding:0;
+	border:0;
+}
+div.subact_dimmer{
+	text-align:center;
+}
+div.rgb_act input{
+	border:1px solid #000000;
+	width:180px;
+}
+div.rgb_act{
+	text-align:center;
+	height:120px;
+}
+div#dyndns_text{
+	text-align:center;
+}
+a#dyndns_link{
+	height:40px;
+	line-height:40px;
+	margin:15px 0;
+}
+div.registration_code a{
+	color:#000000;
+}
+/*******************************************************************************
+	Vedo page
+*******************************************************************************/
+#alarm_config_load,
+#alarm_config_error{
+	padding-top:100px;
+	text-align:center;
+	font-size:20px;
+	width:320px;
+	margin:0 auto;
+}
+#alarm_config_error{
+	color:#EE0000;
+}
+#alarm_config_load p{
+	margin:5px 0;
+}
+div.vedo_command,
+div#system_command{
+	width:363px;
+	margin:0 auto;
+	overflow:hidden;
+	margin-bottom:10px;
+}
+div#system_command{
+	margin-bottom:20px;
+}
+div.vedo_command{
+	height:0;
+}
+a.vedo_command_button{
+	width:109px;
+	margin:5px;
+	display:block;
+	float:left;
+	color:#000000;
+	text-decoration:none;
+}
+a.vedo_command_button div{
+	text-indent:100px;
+	display:block;
+	overflow:hidden;
+	width:35px;
+	height:35px;
+	margin:6px auto;
+	text-align:center;
+	background-position:-757px -292px;
+}
+a.vedo_command_button.not_ready{
+	background-color:#DEDEDE;
+}
+a.vedo_command_button.set div{
+	background-position:-238px -242px;
+}
+a.vedo_command_button.set.active{
+	background-color:#009036;
+}
+a.vedo_command_button.set.active div{
+	background-position:-275px -242px;
+}
+a.vedo_command_button.unset div{
+	background-position:-238px -353px;
+}
+a.vedo_command_button.partial div{
+	width:35px;
+	height:35px;
+	float:left;
+	background-position:-238px -279px;
+}
+a.vedo_command_button.partial span{
+	width:65px;
+	height:46px;
+	float:left;
+	overflow:hidden;
+	display:inline-block;
+	line-height:46px;
+	text-align:center;
+}
+a.vedo_command_button.partial.active{
+	background-color:#00AEEF;
+	color:#FFFFFF;
+}
+a.vedo_command_button.partial.active div{
+	background-position:-275px -279px;
+}
+div#padlock{
+	width:68px;
+	height:68px;
+	margin:0 auto;
+	background-position:-332px -282px;
+}
+div#padlock.alarm{
+	background-position:-332px -72px;
+}
+div#padlock.total{
+	background-position:-332px -142px;
+}
+div#padlock.partial{
+	background-position:-332px -212px;
+}
+div#system_status{
+	text-align:center;
+}
+div#system_status{
+	height:30px;
+}
+button.area_button{
+	position:relative;
+}
+button.area_button span{
+	width:auto;
+}
+button.area_button span.area_status{
+	position:absolute;
+	right:10px;
+	bottom:5px;
+	font-size:12px;
+	line-height:16px;
+}
+button.area_button span.area_desc{
+	position:absolute;
+	left:10px;
+	bottom:5px;
+	line-height:46px;
+}
+button.area_button.partial{
+	background-color:#00AEEF;
+	color:#FFFFFF;
+}
+button.area_button.total{
+	background-color:#009036;
+	color:#FFFFFF;
+}
+button.area_button.alarm{
+	background-color:#E21020;
+	color:#FFFFFF;
+}
+a.vedo_command_button.status{
+	text-align:center;
+	font-size:30px;
+	line-height:46px;
+}
+div#system_command a.status div{
+	height:35px;
+	width:35px;
+	background-position:-238px -316px;
+	float:left;
+}
+div.vedo_command a.status div{
+	height:35px;
+	width:35px;
+	background-position:-275px -316px;
+	float:left;
+}
+div#system_command a.status span,
+div.vedo_command a.status span{
+	height:34px;
+	width:65px;
+	float:left;
+	display:inline-block;
+	line-height:19px;
+	font-size:13px;
+	overflow:hidden;
+	margin:6px 0;
+}
+div#zone{
+	padding-top:50px;
+}
+div#zone div.no_list{
+	text-align:center;
+	font-size:110%;
+}
+div#zone ul{
+	width:190px;
+	margin:0 auto;
+}
+div#zone div.zone_list{
+	width:260px;
+	height:25px;
+	margin:10px auto;
+}
+div.zone_list div.zone_desc{
+	float:left;
+	margin-left:5px;
+	cursor:pointer;
+}
+div.zone_list div.zone_status{
+	width:25px;
+	height:25px;
+	margin-right:5px;
+	float:left;
+}
+div.zone_status.ok{
+	background-position:-321px -378px;
+}
+div.zone_status.alarm{
+	background-position:-348px -378px;
+}
+div.zone_status.sabotage{
+	background-position:-375px -378px;
+}
+div.zone_status.open{
+	background-position:-294px -352px;
+}
+div.zone_status.fault{
+	background-position:-321px -352px;
+}
+div.zone_status.isolated{
+	background-position:-348px -352px;
+}
+div.zone_status.excluded{
+	background-position:-375px -352px;
+}
+/*******************************************************************************
+	Pop-up jquery-ui
+*******************************************************************************/
+div.ui-dialog{
+	font-size:14px;
+	z-index:1000000001;
+}
+div.ui-widget-overlay{
+	z-index:1000000000;
+}
+
+/*******************************************************************************
+	Safe pages
+*******************************************************************************/
+div#safe_home{
+	width:320px;
+	margin:0 auto;
+}
+div#safe_home .safe_home_button{
+	width:145px;
+	font-size:85%;
+	margin:0;
+}
+div#safe_home #safe_area{
+	float:left;
+}
+div#safe_home #safe_zone{
+	float:right;
+}
+div#safe_home .safe_home_button span.home_icon{
+	left:55px;
+}
+/********************************************************************
+	Area page
+********************************************************************/
+h2.safe_area_desc,
+h2.safe_table_title{
+	width:380px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	font-size:24px;
+	font-weight:normal;
+	border-bottom:3px solid #000000;
+	margin-bottom:10px;
+}
+h2.safe_table_title{
+	margin:0 auto;
+	margin-bottom:15px;
+}
+div.zone_cell{
+	margin-bottom:40px;
+	text-align:center;
+}
+div#total{
+	text-align:center;
+	margin-bottom:30px;
+}
+div#areas div.col_sx,
+div#areas div.col_dx{
+	margin:5px 0;
+}
+a.led_link,
+img.led_img{
+	display:inline-block;
+	width:15px;
+	height:15px;
+	border-radius:5px;
+	vertical-align:bottom;
+	margin:0 5px;
+	margin-right:20px;
+	background-color:#DDDDDD;
+}
+a.led_link.on,
+img.led_img.on{
+	background-color:#E21020;
+}
+/*EOF*/

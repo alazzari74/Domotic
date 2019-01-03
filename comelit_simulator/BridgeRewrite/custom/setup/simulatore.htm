@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name='viewport' content='width=402, orientation=portrait, minimum-scale=0.5, maximum-scale=2.0' />
+		<script src="/js/load_file.js?ver=7370" type="text/javascript"></script>
+		<title>Bridge | Simulatore</title>
+	</head>
+	<body onLoad="loading_script()">
+		<div id="outer" style="border:1px solid;width:200px;height:10px;overflow:hidden;margin:120px auto -120px auto"><div id="inner" style="background-color:#0F67A1;height:100%;width:0%;"></div></div>
+		<div id="page_header" class="app_visible" style="display:none;">
+			<div id="tab_header" class="page_width icons">
+				<a id="home_button" class="top_head_button icons" href="/index.htm">Home</a>
+				<a id="back_button" class="top_head_button icons" href="/setup/index.htm">Back</a>
+				<h1>Simulatore</h1> <!-- Timers -->
+			</div>
+			<div id="fade_out" class="page_width icons">&nbsp;</div>
+		</div>
+		<div id="page" class="page_width hide_onload" style="display:none">
+			<div id="login_box" style="display:none;">
+				<p id="login_text">Inserire password installatore</p>
+				<form id="login_form" action="javascript:void(0);"><p>
+						<input type="password" maxlength="10" size="10" name="code" class="login_input input" />
+						<input type="image" src="/images/trans.png" value="Login" alt="Login" class="login_submit button icons" />
+					</p></form>
+			</div>
+			<div id="page_content" style="display:none;">
+				<div id="message_text"></div>
+				<form action="javascript:void(0);" id="form_setup">
+					<input name="save" type="hidden" value="0" />
+					<div class="cell">
+						<div class="col_sx">Numero timer:</div><!-- Timer number: -->
+						<div class="col_dx">
+							<select name="num" size="1">
+								<option value="0" selected="selected"></option>
+								<option value="1" ></option>
+								<option value="2" ></option>
+								<option value="3" ></option>
+								<option value="4" ></option>
+								<option value="5" ></option>
+								<option value="6" ></option>
+								<option value="7" ></option>
+								<option value="8" ></option>
+								<option value="9" ></option>
+								<option value="10" ></option>
+								<option value="11" ></option>
+								<option value="12" ></option>
+								<option value="13" ></option>
+								<option value="14" ></option>
+								<option value="15" ></option>
+								<option value="16" ></option>
+								<option value="17" ></option>
+								<option value="18" ></option>
+								<option value="19" ></option>
+								<option value="20" ></option>
+								<option value="21" ></option>
+								<option value="22" ></option>
+								<option value="23" ></option>
+								<option value="24" ></option>
+								<option value="25" ></option>
+								<option value="26" ></option>
+								<option value="27" ></option>
+								<option value="28" ></option>
+								<option value="29" ></option>
+								<option value="30" ></option>
+								<option value="31" ></option>
+							</select>
+						</div>
+					</div>
+					<div class="cell">
+						<div class="col_sx">Descrizione:</div><!-- Description: -->
+						<div class="col_dx">
+							<input name="desc" type="text" value="Tutti giorni" size="15" maxlength="15" />
+						</div>
+					</div>
+					<hr class="horizontal_rule" />
+					<div id="tipo" class="cell">
+						<input name="type" type="radio" id="tipo_0" value ="0"  />Timer
+						<input name="type" type="radio" id="tipo_1" value ="1" checked="checked" />Virtuale
+					</div>
+					<div class="cell">
+						<div class="col_sx">Abilitazione timer:</div><!-- Authorised timer: -->
+						<div class="col_dx">
+							<input type="checkbox" name="enable" checked="checked" />
+						</div>
+					</div>
+					<hr class="horizontal_rule" />
+					<div class="cell">
+						<div class="col_sx">Associazione zona abilitazione:</div><!-- Association of authorisation zone: -->
+						<div class="col_dx">
+							<input name="zone" type="text" value="0" size="3" maxlength="3" />
+						</div>
+					</div>
+					<hr class="title_rule" />
+					<div class="cell">
+						<div class="col_sx">Start timer:</div><!-- Start timer: -->
+						<div class="col_dx">
+							HH:MM <input class="time" name="start_time" type="text" value="15:00" size="6" maxlength="5" />
+						</div>
+					</div>
+					<div class="cell">
+						<div class="col_sx">Giorni di abilitazione:</div><!-- Authorised Days -->
+						<div class="col_dx">
+							<input type="checkbox" class="day_check" name="start_day1" checked="checked" />Lu <!-- Mo -->
+							<input type="checkbox" class="day_check" name="start_day2" checked="checked" />Ma <!-- Tu -->
+							<input type="checkbox" class="day_check" name="start_day3" checked="checked" />Me<br/> <!-- We -->
+							<input type="checkbox" class="day_check" name="start_day4" checked="checked" />Gi <!-- Th -->
+							<input type="checkbox" class="day_check" name="start_day5" checked="checked" />Ve <!-- Fr -->
+							<input type="checkbox" class="day_check" name="start_day6" checked="checked" />Sa <!-- Sa -->
+							<input type="checkbox" class="day_check" name="start_day0" checked="checked" />Do <!-- Su -->
+						</div>
+						<div class="col_dx clear">
+							Tutti i giorni <input type="checkbox" class="all_day_check" name="start_day_all" /> <!-- All days -->
+						</div>
+					</div>
+					<hr class="title_rule" />
+					<div id="vis_end_timer">
+						<div class="cell">
+							<div class="col_sx">End timer:</div><!-- End timer: -->
+							<div class="col_dx">
+								HH:MM <input class="time" name="end_time" type="text" value="23:59" size="6" maxlength="5" />
+							</div>
+						</div>
+						<div class="cell">
+							<div class="col_sx">Giorni di abilitazione:</div><!-- Authorised Days -->
+							<div class="col_dx">
+								<input type="checkbox" class="day_check" name="end_day1" checked="checked" />Lu <!-- Mo -->
+								<input type="checkbox" class="day_check" name="end_day2" checked="checked" />Ma <!-- Tu -->
+								<input type="checkbox" class="day_check" name="end_day3" checked="checked" />Me<br/> <!-- We -->
+								<input type="checkbox" class="day_check" name="end_day4" checked="checked" />Gi <!-- Th -->
+								<input type="checkbox" class="day_check" name="end_day5" checked="checked" />Ve <!-- Fr -->
+								<input type="checkbox" class="day_check" name="end_day6" checked="checked" />Sa <!-- Sa -->
+								<input type="checkbox" class="day_check" name="end_day0" checked="checked" />Do <!-- Su -->
+							</div>
+							<div class="col_dx clear">
+								Tutti i giorni <input type="checkbox" class="all_day_check" name="end_day_all" /> <!-- All days -->
+							</div>
+						</div>
+					</div>
+					<div id="vis_dest">
+						<div class="cell">
+							<div class="col_sx">Destinatario</div><!-- Destinatario -->
+							<div class="col_dx">
+								<select name="act" size="1">	
+									<option value="0">Nessuno</option><!-- OFF -->
+									<option value="1">Elemento su Bridge</option><!-- Icona -->
+									<option value="8">Ambiente domotico</option><!-- Domotic environment -->
+									<option value="2">Supervisore</option><!-- Supervisore -->
+									<option value="3">Scenario</option><!-- Scenario -->
+									<option value="4">Modulo + Uscita</option><!-- Modulo+uscita -->
+									<option value="5">Zona</option><!-- Zoana -->
+									<option value="6" class="safe_act">Centrale serie S</option><!-- Safe -->
+									<option value="7" class="vedo_act">Centrale Vedo</option><!-- VEDO -->
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_icon" class="vis_all">
+							<div class="cell">
+								<div class="col_sx">Tipo icona</div><!-- Tipo icona: -->
+								<div class="col_dx">
+									<select name="subact_icon_type" size="1">
+										<option value="0">Luci</option><!-- Lights -->
+										<option value="1">Altro</option><!-- Other -->
+										<option value="2">Automazioni</option><!-- Automation -->
+										<option value="3">Clima</option><!-- Thermo -->
+										<option value="4">Irrigazione</option><!-- Irrigation -->
+										<option value="5">Tapparelle</option><!-- Shutter -->
+									</select>
+								</div>
+							</div>
+							<div class="cell">
+								<div class="col_sx">Elemento su Bridge</div><!-- Icona: -->
+								<div class="col_dx">
+									<select name="subact_icon_num" size="1"></select>
+								</div>
+							</div>
+						</div>
+						<div id="vis_subact_env" class="vis_all">
+							<div class="cell">
+								<div class="col_sx">Tipo ambiente:</div><!-- Tipo icona: -->
+								<div class="col_dx">
+									<select name="subact_env_type" size="1">
+										<option value="0">Luci</option><!-- Lights -->
+										<option value="1">Altro</option><!-- Other -->
+										<option value="5">Tapparelle</option><!-- Shutter -->
+									</select>
+								</div>
+							</div>
+							<div class="cell">
+								<div class="col_sx">Ambiente domotico</div>
+								<div class="col_dx">
+									<select name="subact_env_num" size="1"></select>
+								</div>
+							</div>
+						</div>
+						<div id="vis_subact_list" class="cell vis_all">
+							<div class="col_sx"></div>
+							<div class="col_dx">
+								<select name="subact_list" size="1"></select>
+							</div>
+						</div>
+						<div id="vis_subact_mod_usc" class="vis_all">
+							<div class="cell">
+								<div class="col_sx">Numero modulo:<!-- Modulo: --></div>
+								<div class="col_dx">
+									<input name="sact_sh_mod" type="text" size="3" maxlength="3" />
+								</div>
+							</div>
+							<div class="cell">
+								<div class="col_sx" id="io_module_type">Numero uscita:<!-- Numero I/O: --></div>
+								<div class="col_dx">
+									<input name="sact_sh_out" type="text" size="3" maxlength="1" />
+								</div>
+							</div>
+						</div>
+						<div id="vis_subact_num" class="vis_all">
+							<div class="cell">
+								<div class="col_sx">Numero:<!-- Numero: --></div>
+								<div class="col_dx">
+									<input name="sact_num" type="text" size="3" maxlength="3" />
+								</div>
+							</div>
+						</div>
+						<div id="vis_subact_zone" class="vis_all">
+							<div class="cell">
+								<div class="col_sx">Zona:<!-- Zone: --></div>
+								<div class="col_dx">
+									<input name="sact_zone" type="text" size="3" maxlength="3" />
+								</div>
+							</div>
+						</div>
+						<hr class="horizontal_rule" />
+						<div id="vis_subact_sh" class="cell vis_all">
+							<div class="col_sx">Comando:</div><!-- Comando: -->
+							<div class="col_dx">
+								<select id="subact_sh" name="subact_sh" size="1">
+									<option value="0">Normale</option><!-- Normale -->
+									<!-- <option value="1">Normale OFF</option>Normale OFF  -->
+									<option value="2">Set</option><!-- Set -->
+									<option value="3">Reset</option><!-- Reset -->
+									<option value="4">Dimmer</option><!-- Dimmer -->
+									<option value="5">RGB</option><!-- RGB -->
+									<option value="6">Set analogico</option><!-- Set Analog -->
+									<option value="7">Reset analogico</option><!-- Reset Analog -->
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_icon_norm" class="cell vis_all">
+							<div class="col_sx">Comando:</div><!-- Comando: -->
+							<div class="col_dx">
+								<select id="subact_icon_norm" name="sact_i_nor" size="1">
+									<option value="0">Accendi</option><!-- Accendi -->
+									<option value="1">Spegni</option><!-- Spegni  -->
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_onoff" class="cell vis_all">
+							<div class="col_sx">Comando:</div><!-- Comando: -->
+							<div class="col_dx">
+								<select id="subact_onoff" name="sact_onoff" size="1">
+									<option value="2">Simula Pulsante</option><!--button simulation-->
+									<option value="0">ON</option><!-- ON -->
+									<option value="1">OFF</option><!-- OFF  -->
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_icon_value" class="cell vis_all">
+							<div class="col_sx">Comando:</div><!-- Comando: -->
+							<div class="col_dx">
+								<select id="subact_icon_value" name="sact_i_val" size="1">
+									<option value="0">Accendi</option><!-- Accendi -->
+									<option value="1">Spegni</option><!-- Spegni  -->
+									<option value="2">Regola</option><!-- Regola -->
+									<option value="3">Attiva presenza</option><!-- Attiva Presenza -->
+									<option value="4">Disattiva presenza</option><!-- Disattiva presenza -->
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_icon_aut" class="cell vis_all">
+							<div class="col_sx">Comando:</div><!-- Comando: -->
+							<div class="col_dx">
+								<select id="subact_icon_aut" name="sact_i_aut" size="1">
+									<option value="0">Apri</option><!-- Apri -->
+									<option value="1">Chiudi</option><!-- Chiudi  -->
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_alm_safe" class="cell vis_all">
+							<div class="col_sx">Comando:</div><!-- Comando: -->
+							<div class="col_dx">
+								<select name="subact_safe" size="1">
+									<option value="0">Disinserisci</option><!-- Disinserisci -->
+									<option value="1">Inserisci</option><!-- Inserisci -->
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_alm_vedo" class="cell vis_all">
+							<div class="col_sx">Comando:</div><!-- Comando: -->
+							<div class="col_dx">
+								<select name="subact_vedo" size="1">
+									<!--<option value="0">Disinserisci</option> Disinserisci -->
+									<option value="1">Inserisci</option><!-- TOT -->
+									<option value="2">P1</option><!-- P1 -->
+									<option value="3">P2</option><!-- P2  -->
+									<option value="4">P1+P2</option><!-- P12 -->
+									<option value="5">Inserisci immediato</option><!-- TOT Immediate -->
+									<option value="6">P1 immediato</option><!-- P1 Immediate -->
+									<option value="7">P2 immediato</option><!-- P2 Immediate  -->
+									<option value="8">P1+P2 immediato</option><!-- P12 Immediate -->
+									</optgroup>
+								</select>
+							</div>
+						</div>
+						<div id="vis_subact_therm" class="cell vis_all">
+							<div class="col_sx">Regime</div><!-- Regime: -->
+							<div class="col_dx">
+								<select name="subact_therm" size="1">
+									<option value="0" class="thermo">Inverno - Automatico</option><!-- Inverno AUTO -->
+									<option value="1" class="thermo">Inverno - Manuale</option><!-- Inverno MAN -->
+									<!--<option value="2" class="thermo">Inverno - Economy</option> notte -->
+									<option value="3" class="thermo">Inverno - OFF</option><!-- Inverno - OFF -->
+									<!--<option value="4" class="thermo">W-C</option> count -->
+									<option value="5" class="thermo">Estate - Automatico</option><!-- Estate AUTO -->
+									<option value="6" class="thermo">Estate - Manuale</option><!-- Estate MAN -->
+									<!--<option value="7" class="thermo">Estate - Economy</option> notte -->
+									<option value="8" class="thermo">Estate - OFF</option><!-- Estate - OFF -->
+									<!--<option value="9" class="thermo">S-C</option><!-- Estate - CountDown -->
+									<option value="10" class="humi">Umidificazione - Automatico</option><!-- Inverno AUTO -->
+									<option value="11" class="humi">Umidificazione - Manuale</option><!-- Inverno MAN -->
+									<!--<option value="12" class="humi">Umidificazione - Economy</option> notte -->
+									<option value="13" class="humi">Umidificazione - OFF</option><!-- Inverno - OFF -->
+									<!--<option value="14" class="humi">C</option> count -->
+									<option value="15" class="humi">Deumidificazione - Automatico</option><!-- Estate AUTO -->
+									<option value="16" class="humi">Deumidificazione - Manuale</option><!-- Estate MAN -->
+									<!--<option value="17" class="humi">Deumidificazione - Economy</option> notte -->
+									<option value="18" class="humi">Deumidificazione - OFF</option><!-- Estate - OFF -->
+								</select>
+							</div>
+						</div>
+						<div class="cell vis_all" id="vis_subact_therm_temp">
+							<div class="col_sx">Soglia <span class="clima_label"></span><!-- Soglia --></div>
+							<div class="col_dx">
+								<input name="subact_temp" type="text" size="4" maxlength="4" precision="1" />
+								<div id="temp_desc" class="desc decimal_help">Usare il punto come separatore decimale</div>
+							</div>
+						</div>
+						<div class="cell vis_all" id="vis_subact_rgb">
+							<div class="rgb_slider" id="rgb_value_timer"></div>
+							<div class="rgb_act" id="rgb"><div id="rgb_color_timer" class="rgb_color"></div><input name="subact_rgb" class="color {pickerInsetColor:'black',pickerFace:0,onImmediateChange:'updateRGBSlider(this, \'timer\');',minV:(1/32),pickerFaceColor:'transparent',pickerPosition:'bottom',pickerOnfocus:true,pickerBorder:0,hash:false,slider:false});" id="rgb_input_timer" /></div>
+							</div>
+							<div class="cell vis_all subact_dimmer" id="vis_subact_dimmer">
+								<input name="dimmer" type="text" class="dimmer_act" />
+								<div class="slider" id="dimmer"></div>
+								<span id="value_dimmer"></span>
+							</div>
+						</div>
+						<div class="submit">
+							<input type="submit" class="button submit_button" value="Salva" /> <!-- Submit -->
+						</div>
+					</form>
+				</div>
+		</div>
+		<div id="page_footer" class="app_visible" style="display:none;">
+			<div id="footer_content" class="page_width">
+				<a href="http://www.comelitgroup.com" id="comelit_logo" class="icons">Comelit Group S.p.A.</a>
+				<a id="logout" class="icons" href="javascript:SendLogout()">Logout</a>
+				<span id="life">Connessione...</span>
+				<span id="life_error" style="display:none"><!-- Errore: Connessione persa! --></span>
+			</div>
+		</div>	
+		<script type="text/javascript">
+			var login_type = 'adm';
+			var alarm_type = "0";
+			var vedo_area_desc = ["ERROR"];
+					var vedo_area_bridge = "".split('');
+			var safe_area_desc = ["ERROR"];
+					var timer_desc = "Tutti giorni,Notte,Giorno,,,,,,,,,,,,,,,,,,,,,,,,,,,,,".split(',');
+			var scenario_desc = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,".split(',');
+			var icon_desc = ["Sala - tavolo","Sala - parete","Cucina","Corridoio P0","Corridoio P1","Scala","Luce bagno P0","Luce bagno P1","Lavanderia","Camera da letto","Studio","Lettura - libreria","Lettura","Palestra","Mansarda","Luci giardino","Luce balcone","Buzzer tiranti","Risc. P0","Risc. Letto","Risc. P1","Clima P0","Clima P1"];
+					var icon_type = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,3,3".split(',');
+			var icon_io_type = "0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,6,13".split(',');
+			var icon_env = "1,1,1,2,2,2,3,3,4,6,7,7,7,7,9,10,10,5,8,8,8,0,0".split(',');
+			var icon_env_desc = ["","Living","Passaggi","Bagno","Lavanderia","Allarmi","Notte","Svago","Riscaldamento","Mansarda","Esterno","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""];
+					var act = ["1"];
+			var subact = ["0"];
+			var act_data_word = ["0"];
+			var act_data_zone = ["0"];
+			var act_data_mod = ["0"];
+			var act_data_io = ["0"];
+			var act_data_type = ["0"];
+			var act_data_num = ["0"];
+			var act_data_rgb = ["000000"];
+			var action_vis_update_id = [""];
+			
+			function loading_script () {
+				load_url.push(['/js/jscolor/jscolor.js','js']);
+				starting_load();
+			}
+
+			function start() {
+				$('.vis_all').css('display', 'none');
+				timer_vis_onload();
+				jscolor.init();
+				$(".slider").slider({
+					range: "min",
+					min: 0,
+					max: 255,
+					stop: function(event, ui) {
+						input_id = $(this).attr('id');
+						$("[name=" + input_id + "]").val(ui.value);
+						$("#value_" + input_id).html((parseFloat(ui.value) / 2.55).toFixed(0) + '%');
+					}
+				});
+
+				$(".rgb_slider").slider({
+					range: "min",
+					min: 0,
+					max: 1000,
+					slide: function(event, ui) {
+						var rgb_id = 'rgb_input_timer';
+						document.getElementById(rgb_id).color.fromHSV(document.getElementById(rgb_id).color.hsv[0], document.getElementById(rgb_id).color.hsv[1], ui.value / 1000);
+					}
+				});
+
+				$('[name=act]').val(act[0]);
+				act[0] = '';
+				$('[name=subact_icon_type]').val(act_data_type[0]);
+				$('[name=subact_env_type]').val(act_data_type[0]);
+				act_data_type[0] = '';
+				action_vis_update(action_vis_update_id);
+				$('[name=subact_icon_num]').val(act_data_num[0]);
+				$('[name=subact_env_num]').val(act_data_num[0]);
+				$('[name=subact_list]').val(act_data_word[0]);
+				$('[name=sact_num]').val(act_data_word[0]);
+				$('[name=sact_zone]').val(act_data_zone[0]);
+				$('[name=sact_sh_mod]').val(act_data_mod[0]);
+				$('[name=sact_sh_out]').val(act_data_io[0]);
+				$('[name=subact_sh]').val(subact[0]);
+				$('[name=sact_onoff]').val(subact[0]);
+				$('[name=sact_i_val]').val(subact[0]);
+				$('[name=sact_i_nor]').val(subact[0]);
+				$('[name=sact_i_aut]').val(subact[0]);
+				$('[name=subact_therm]').val(subact[0]);
+				document.getElementById('rgb_input_timer').color.fromString(act_data_rgb[0]);
+				var dimmer = act_data_word[0];
+				if (dimmer > 255) {
+					dimmer = 255;
+				}
+				$('[name=dimmer]').val(dimmer);
+				$('#dimmer').slider('option', 'value', dimmer);
+				$("#value_dimmer").html((parseFloat(dimmer) / 2.55).toFixed(0) + '%');
+				$('[name=subact_vedo]').val(subact[0]);
+				$('[name=subact_safe]').val(subact[0]);
+				if (subact[0] <= 9) {
+					$('[name=subact_temp]').val(act_data_word[0] / 10);
+					$('[name=subact_temp]').format({precision: 1, allow_negative: false, autofix: true});
+				}
+				else
+				{
+					$('[name=subact_temp]').val(Math.floor(act_data_word[0] / 10));
+					$('[name=subact_temp]').format({precision: 0, allow_negative: false, autofix: true});
+				}
+				$(".rgb_slider").each(function() {
+					var rgb_id = $(this).attr('id').split('_')[2];
+					updateRGBSlider(document.getElementById('rgb_input_timer').color, rgb_id);
+				});
+
+				$('.vis_all').css('display', 'none');
+				action_vis_update(action_vis_update_id);
+				displayEndTimer();
+				enableDayCheck();
+
+				startPollFile('/login.json', checkLoginAdm);
+
+				$(".rgb_color").click(function() {
+					document.getElementById('rgb_input_timer').color.showPicker();
+				});
+
+				$("#form_setup").submit(function(e) {
+					validateAction(action_vis_update_id);
+					sendConfigForm($(this), "timer");
+					e.preventDefault();
+				});
+				$('#form_setup').change(function() {
+					$('.vis_all').css('display', 'none');
+					document.getElementById('rgb_input_timer').color.hidePicker();
+					displayEndTimer();
+					action_vis_update(action_vis_update_id);
+				});
+				$("[name=num]").change(function() {
+					updateConfigForm($(this).val());
+				});
+				$('.time').change(function() {
+					var id = $(this).attr('id');
+					var string = $(id).val();
+					if (string.charAt(2) != ':') {
+						$(id).val('00:00');
+						return;
+					}
+					var hour = parseInt(string.substring(0, 2));
+					if ((hour < 0) || (!hour)) {
+						hour = '00';
+					} else if (hour < 10) {
+						hour = '0' + hour;
+					} else if (hour >= 24) {
+						hour = '23';
+					}
+					var min = parseInt(string.substring(3, 5));
+					if ((min < 0) || (!min)) {
+						min = '00';
+					} else if (min < 10) {
+						min = '0' + min;
+					} else if (min >= 60) {
+						min = '59';
+					}
+					$(id).val(hour + ':' + min);
+				});
+				$('.all_day_check').change(allDayCheck);
+				$('.day_check').change(enableDayCheck);
+			}
+		</script>
+	</body>
+</html>

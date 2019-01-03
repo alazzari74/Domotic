@@ -1,0 +1,48 @@
+[Raspberry Pi] Condividere cartelle con un server Samba
+
+Condividiamo una cartella su Raspbian con un server Samba.
+
+Installiamo
+
+sudo apt-get install samba samba-common-bin
+
+ed andiamolo a configurare cambiando i parametri nel suo file di configurazione
+
+sudo nano /etc/samba/smb.conf
+
+Togliamo i commenti a
+
+workgroup = WORKGROUP
+wins support = yes
+
+dove “WORKGROUP” deve essere sostituito con il workgroup della vostra rete e “wins support” è per il supporto ai sistemi Windows (se non vi interessa potete anche lasciarlo invariato),
+
+togliete il commento anche a
+
+# security = user
+
+ed aggiungete alla fine del file questo
+
+[nome_cartella_condivisa]
+comment = vostro_commento
+path= path_della_cartella_da_condividere
+browseable=yes
+read only = no
+writeable=yes
+only guest=no
+guest ok=no
+create mask=0777
+directory mask=0777
+public=no
+
+dove “nome_cartella_condivisa” è per il nome che volete far apparire nella vostra rete.
+
+Settiamo una password per il server Samba
+
+sudo smbpasswd -a username
+
+Sostituite username con il vostro username.
+
+Riavviamo il server
+
+sudo /etc/init.d/samba restart

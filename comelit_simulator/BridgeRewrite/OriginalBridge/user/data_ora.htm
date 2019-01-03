@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name='viewport' content='width=402, orientation=portrait, minimum-scale=0.5, maximum-scale=2.0' />
+		<script src="/js/load_file.js?ver=7370" type="text/javascript"></script>
+		<title>Bridge | Data e ora</title>
+	</head>
+	<body onLoad="starting_load()">
+		<div id="outer" style="border:1px solid;width:200px;height:10px;overflow:hidden;margin:120px auto -120px auto"><div id="inner" style="background-color:#0F67A1;height:100%;width:0%;"></div></div>
+		<div id="page_header" class="app_visible" style="display:none;">
+			<div id="tab_header" class="page_width icons">
+				<a id="home_button" class="top_head_button icons" href="/index.htm">Home</a>
+				<a id="back_button" class="top_head_button icons" href="/user/setup.htm">Back</a>
+				<h1>Data e ora</h1> <!-- Data Ora -->
+			</div>
+			<div id="fade_out" class="page_width icons">&nbsp;</div>
+		</div>
+		<div id="page" class="page_width hide_onload" style="display:none">
+			<div id="login_box" style="display:none;">
+				<p id="login_text">Inserire password utente</p>
+				<form id="login_form" action="javascript:void(0);"><p>
+						<input type="password" maxlength="10" size="10" name="code" class="login_input input" />
+						<input type="image" src="/images/trans.png" value="Login" alt="Login" class="login_submit button icons" />
+					</p></form>
+			</div>
+			<div id="page_content" style="display:none;">
+				<div id="message_text"></div>
+				<form action="javascript:void(0);" id="form_setup">
+					<input name="save" type="hidden" value="0" />
+
+					<h2 class="setup">Data e ora</h2> <!-- Data e Ora -->
+					<div class="cell">
+						<div class="col_sx">Data e ora</div>
+						<div class="col_dx">
+							GG/MM/AAAA <input name="date" id="date" class="form_input" type="text" value="30/10/2016" size="11" maxlength="10" />
+						</div>
+						<div class="clear"></div>
+						<div class="col_dx">
+							HH:MM <input name="time" id="time" class="form_input" type="text" value="14:33" size="6" maxlength="5" />
+						</div>
+					</div>
+					<hr class="horizontal_rule clear" />
+					<div class="cell">
+						<div class="col_sx">Abilita NTP (ora/data automatica da Internet)</div>
+						<div class="col_dx">
+							<input type="checkbox" id="ntp" name="ntp"  />
+						</div>
+					</div>
+					<div class="cell" id="ntp_server">
+						<div class="col_sx">Server NTP</div>
+						<div class="col_dx">
+							<input name="ntp_server" type="text" value="pool.ntp.org" size="30" maxlength="30" />
+						</div>
+					</div>
+					<hr class="horizontal_rule clear" />
+					<div class="cell">
+						<div class="col_sx">Fuso orario</div>
+						<div class="col_dx">
+							<select name="tmz" id="tmz" class="form_input" style="width:240px">
+								<option value="0" >(GMT -12:00) Eniwetok, Kwajalein</option>
+								<option value="100" >(GMT -11:00) Midway Island, Samoa</option>
+								<option value="200" >(GMT -10:00) Hawaii</option>
+								<option value="300" >(GMT -9:00) Alaska</option>
+								<option value="400" >(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+								<option value="500" >(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+								<option value="600" >(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+								<option value="700" >(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+								<option value="800" >(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+								<option value="850" >(GMT -3:30) Newfoundland</option>
+								<option value="900" >(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+								<option value="1000" >(GMT -2:00) Mid-Atlantic</option>
+								<option value="1100" >(GMT -1:00) Azores, Cape Verde Islands</option>
+								<option value="1200" >(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+								<option value="1300" selected="selected">(GMT +1:00) Rome, Brussels, Copenhagen, Madrid, Paris</option>
+								<option value="1400" >(GMT +2:00) Kaliningrad, South Africa</option>
+								<option value="1500" >(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+								<option value="1600" >(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+								<option value="1700" >(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+								<option value="1750" >(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+								<option value="1775" >(GMT +5:45) Kathmandu</option>
+								<option value="1800" >(GMT +6:00) Almaty, Dhaka, Colombo</option>
+								<option value="1900" >(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+								<option value="2000" >(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+								<option value="2100" >(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+								<option value="2105" >(GMT +9:30) Adelaide, Darwin</option>
+								<option value="2200" >(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+								<option value="2200" >(GMT +10:30) Lord Howe Island</option>
+								<option value="2300" >(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+								<option value="2350" >(GMT +11:30) Norfolk Island</option>
+								<option value="2400" >(GMT +12:00) New Zealand, Kiribati, Auckland, Wellington, Fiji, Kamchatka</option>
+								<option value="2500" >(GMT +13:00) Tonga, Samoa</option>
+								<option value="2600" >(GMT +14:00) Christmas Island</option>
+							</select>
+						</div>
+					</div>
+					<hr class="horizontal_rule clear" />
+					<div class="cell">
+						<div class="col_sx">Passaggio automatico all'ora legale</div>
+						<div class="col_dx">
+							<select name="legale" id="legal" class="form_input" style="width:240px">
+								<option value="0" >No</option>
+								<option value="1" selected="selected">Automatico (solo Europa)</option>
+								<option value="2" >Specifica date</option>
+							</select>
+						</div>
+					</div>
+					<div id="show_legal">
+						<div class="cell">
+							<div class="col_sx">Da:</div>
+							<div class="col_dx">
+								<input name="fm_day" id="fm_day" class="form_input" type="text" value="15" size="3" maxlength="2" />/
+								<input name="fm_mon" id="fm_mon" class="form_input" type="text" value="3" size="3" maxlength="2" />
+							</div>
+						</div>
+						<div class="cell">
+							<div class="col_sx">A:</div>
+							<div class="col_dx">
+								<input name="to_day" id="to_day" class="form_input" type="text" value="15" size="3" maxlength="2" />/
+								<input name="to_mon" id="to_mon" class="form_input" type="text" value="9" size="3" maxlength="2" />
+							</div>
+						</div>
+					</div>
+					<div id="show_man_dst">
+						<div class="cell">
+							<div class="col_sx">Ora legale</div>
+							<div class="col_dx">
+								<input type="checkbox" id="dst_man" name="dst_man"  />
+							</div>
+						</div>
+					</div>
+					<h2 class="setup">Crepuscolare astronomico</h2> <!-- Astronomical crepuscolar -->
+					<div class="cell" id="astronomical">
+						Alba: 06:57 - Tramonto: 17:09
+					</div>
+					<hr class="horizontal_rule clear" />
+					<div class="cell">
+						<div class="col_sx">Latitudine:</div>
+						<div class="col_dx">
+							<input name="latitude" class="form_input" type="text" value="45.1054" size="12" maxlength="10" />N
+						</div>
+					</div>
+					<div class="cell">
+						<div class="col_sx">Longitudine:</div>
+						<div class="col_dx">
+							<input name="longitude" class="form_input" type="text" value="9.9631" size="12" maxlength="10" />E
+							<div id="geo_desc_t" class="desc decimal_help">Usare il punto come separatore decimale</div>
+						</div>
+					</div>
+					<hr class="horizontal_rule clear" />
+					<div class="cell">
+						<div class="col_sx">Variazione alba:</div>
+						<div class="col_dx">
+							<select class="form_input" name="sunrise_diff"></select>
+						</div>
+					</div>
+					<div class="cell">
+						<div class="col_sx">Variazione tramonto:</div>
+						<div class="col_dx">
+							<select class="form_input" name="sunset_diff"></select>
+						</div>
+					</div>
+					<div class="submit">
+						<input type="submit" class="button submit_button" value="Salva" /> <!-- Submit -->
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="page_footer" class="app_visible" style="display:none;">
+			<div id="footer_content" class="page_width">
+				<a href="http://www.comelitgroup.com" id="comelit_logo" class="icons">Comelit Group S.p.A.</a>
+				<a id="logout" class="icons" href="javascript:SendLogout()">Logout</a>
+				<span id="life">Connessione...</span>
+				<span id="life_error" style="display:none"><!-- Errore: Connessione persa! --></span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var login_type = 'dom';
+			var adv_str = new String();
+
+			function start() {
+				update_ntp();
+				
+				$('#ntp').change(update_ntp);
+				$('#legal').change(update_legal);
+				$('[name=dst_man]').change(update_dst_man);
+				$("#form_setup").submit(function(e) {
+					sendConfigForm($(this), "datetime");
+					setTimeout(astronomicalUpdate, 500);
+					e.preventDefault();
+				});
+				$('#date').datepicker({dateFormat: "dd/mm/yy", minDate: new Date(2013, 0, 1)});
+				$('#time').change(function() {
+					var string = $('#time').val();
+					if (string.charAt(2) != ':') {
+						$('#time').val('00:00');
+						return;
+					}
+					var hour = parseInt(string.substring(0, 2));
+					if ((hour < 0) || (!hour)) {
+						hour = '00';
+					} else if (hour < 10) {
+						hour = '0' + hour;
+					} else if (hour >= 24) {
+						hour = '23';
+					}
+					var min = parseInt(string.substring(3, 5));
+					if ((min < 0) || (!min)) {
+						min = '00';
+					} else if (min < 10) {
+						min = '0' + min;
+					} else if (min >= 60) {
+						min = '59';
+					}
+					$('#time').val(hour + ':' + min);
+				});
+				
+				for (var i = -180; i <= 180; i = i + 10) {
+					$('[name=sunrise_diff]').append($('<option>', {
+						value: i,
+						text: i + 'min'
+					}));
+					$('[name=sunset_diff]').append($('<option>', {
+						value: i,
+						text: i + 'min'
+					}));
+				}
+				$('[name=sunrise_diff]').val('0');
+				$('[name=sunset_diff]').val('-30');
+				startPollFile('/login.json', checkLoginSetup);
+			}
+
+			function astronomicalUpdate() {
+				$.ajax({method: 'POST',
+					'url': location.protocol + "//" + location.host + '/user/astronomical.cgi'
+				}).done(function(data) {
+					$('#astronomical').html(data);
+				});
+			}
+		</script>
+	</body>
+</html>

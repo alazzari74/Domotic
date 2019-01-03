@@ -1,0 +1,40 @@
+
+http://192.168.1.252/user/icon_desc.json?type=light&_=1474124956112
+
+{
+"num": 17,
+"desc": ["Sala - tavolo","Sala - parete","Cucina","Corridoio P0","Corridoio P1","Scala","Luce bagno P0","Luce bagno P1","Lavanderia","Camera da letto","Studio","Lettura - libreria","Lettura","Palestra","Luci giardino","Luce balcone","Mansarda"],
+"env": [1,1,1,2,2,2,3,3,4,6,7,7,7,7,9,9,10],
+"status": [0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0],
+"val": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+"type": [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0],
+"protected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+"env_desc": ["","Living","Passaggi","Bagno","Lavanderia","Allarmi","Notte","Svago","Riscaldamento","Esterno","Mansarda"]
+}
+
+type: 1= temporizzato; 0= normale
+Status: 1=ON; 0=OFF
+
+http://192.168.1.252/user/icon_status.json?type=light&_=1474124956113
+{
+"life": 0,
+"domus": "1000C0C0000S",
+"status": [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0],
+"val": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+}
+
+accensione
+http://192.168.1.252/user/action.cgi?type=light&num1=11&_=1474125135596
+Response: 1
+
+spegnimento
+
+http://192.168.1.252/user/action.cgi?type=light&num0=11&_=1474125135601
+Response:1
+
+
+legge gli stati e solo quando cambiano li registra
+
+
+Impostazione temperatura sulla sonda 1
+http://192.168.1.252/user/action.cgi?clima=1&thermo=set&val=184&_=1482762237525

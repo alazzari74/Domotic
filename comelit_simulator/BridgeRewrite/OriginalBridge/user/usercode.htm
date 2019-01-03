@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name='viewport' content='width=402, orientation=portrait, minimum-scale=0.5, maximum-scale=2.0' />
+		<script src="/js/load_file.js?ver=7370" type="text/javascript"></script>
+		<title>Bridge | Cambio codici</title>
+	</head>
+	<body onLoad="starting_load()">
+		<div id="outer" style="border:1px solid;width:200px;height:10px;overflow:hidden;margin:120px auto -120px auto"><div id="inner" style="background-color:#0F67A1;height:100%;width:0%;"></div></div>
+		<div id="page_header" class="app_visible" style="display:none;">
+			<div id="tab_header" class="page_width icons">
+				<a id="home_button" class="top_head_button icons" href="/index.htm">Home</a>
+				<a id="back_button" class="top_head_button icons" href="/user/setup.htm">Back</a>
+				<h1>Cambio codici</h1> <!-- Code change -->
+			</div>
+			<div id="fade_out" class="page_width icons">&nbsp;</div>
+		</div>
+		<div id="page" class="page_width hide_onload" style="display:none">
+			<div id="login_box" style="display:none;">
+				<p id="login_text">Inserire password utente</p>
+				<form id="login_form" action="javascript:void(0);"><p>
+						<input type="password" maxlength="10" size="10" name="code" class="login_input input" />
+						<input type="image" src="/images/trans.png" value="Login" alt="Login" class="login_submit button icons" />
+					</p></form>
+			</div>
+			<div id="page_content" style="display:none;">
+				<div id="message_text"></div>
+				<form action="javascript:void(0);" id="form_user">
+					<input name="save" type="hidden" value="0" />
+					<input name="alm_type" type="hidden" value="0" />
+					<div class="cell">
+						<div class="col_sx">Login domotica</div><!-- Login domotica: -->
+						<div class="col_dx">
+							<select name="domcod" size="1">
+								<option value="0" >Nessun codice utente</option>
+								<option value="1" selected="selected">Codice utente Serial Bridge</option>
+								<option value="2" >Codice utente centrale Vedo</option>
+							</select>
+						</div>
+					</div>
+					<div class="cell vis_code">
+						<div class="col_sx">Nuovo codice utente:</div><!-- New user code: -->
+						<div class="col_dx">
+							<input name="cod" id="cod" type="password" size="10" maxlength="10" value="****" />
+						</div>
+					</div>
+					<div class="cell vis_code">
+						<div class="col_sx">Ridigita codice utente:</div><!-- re-enter user code: -->
+						<div class="col_dx">
+							<input name="codb" id="codb" type="password" size="10" maxlength="10" value="****" />
+						</div>
+					</div>
+					<div class="clear"></div>
+					<div class="submit">
+						<input type="submit" class="button submit_button" value="Salva" /><!-- "Submit" -->
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="page_footer" class="app_visible" style="display:none;">
+			<div id="footer_content" class="page_width">
+				<a href="http://www.comelitgroup.com" id="comelit_logo" class="icons">Comelit Group S.p.A.</a>
+				<a id="logout" class="icons" href="javascript:SendLogout()">Logout</a>
+				<span id="life">Connessione...</span>
+				<span id="life_error" style="display:none"><!-- Errore: Connessione persa! --></span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var login_type = 'dom';
+			function start() {
+				if ('none' != 'vedo') {
+					$("[name=domcod] option[value=2]").remove();
+				}
+				
+				$("[name=domcod]").change(updateDisable);
+
+				$("#form_user").submit(function(e) {
+					var form = $(this);
+					if (($("[name=domcod]").val() != 1) ||
+							(($('[name=cod]').val() == '****') && ($('[name=codb]').val() == '****'))) {
+						sendConfigForm(form, "usercode");
+					} else {
+						var regexp = /^[A-Za-z\d]*$/;
+						var length = /^.{4,10}$/;
+						var cod = $(this).find('[name=\'cod\']').val();
+						var codb = $(this).find('[name=\'codb\']').val();
+						var regexp = /^[A-Za-z\d]*$/;
+						var length = /^.{4,10}$/;
+						var cod = $(this).find('[name=\'cod\']').val();
+						var codb = $(this).find('[name=\'codb\']').val();
+						if (!regexp.test(cod) || !regexp.test(codb)) {
+							alert('Solo password alfanumeriche'); // only alphanumeric char
+						} else if (!length.test(cod) || !length.test(codb)) {
+							alert('Il codice deve essere lungo tra 4 e 10 caratteri'); // Password length from 4 to 10
+						} else if (cod != codb) {
+							alert('ATTENZIONE! sono stati inseriti due codici diversi'); // password not match
+						} else {
+							sendConfigForm(form, "usercode");
+						}
+					}
+					e.preventDefault();
+				});
+				
+				updateDisable();
+				startPollFile('/login.json', checkLoginSetup);
+			}
+
+			function updateDisable() {
+				$('.vis_code').css('display', '');
+				if ($("[name=domcod]").val() == 2) {
+					$('.vis_code').css('display', 'none');
+				}
+			}
+		</script>
+	</body>
+</html>

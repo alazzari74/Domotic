@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name='viewport' content='width=402, orientation=portrait, minimum-scale=0.5, maximum-scale=2.0' />
+    <script src="/js/load_file.js?ver=7370" type="text/javascript"></script>
+    <title>Bridge | Simulatore</title>
+    <style>
+        span.day {
+            margin-left: 4px;
+            margin-right: 4px;
+            margin-top: 3px;
+            margin-bottom: 4px;
+            width: 44px;
+            text-align: center;
+            color: #FFFFFF;
+            height: 18px;
+            display: inline-block;
+        }
+
+        span.day_inprogress {
+            background-color: #00AEEF;
+        }
+
+        span.day_norec {
+            background-color: #ff2828;
+        }
+
+        span.day_partial {
+            background-color: #ffed28;
+            color: #000000;
+        }
+
+        span.day_completed {
+            background-color: #33af33;
+        }
+
+        div.simcommand {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        div.recdetail {
+            margin-top: 15px;
+            border: 1px solid #AAA;
+            border-radius: 10px;
+            padding: 3px;
+        }
+
+        #myProgress {
+            position: relative;
+            width: 100%;
+            height: 15px;
+            background-color: #ddd;
+        }
+
+        #myBar {
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+        }
+
+        #label {
+            text-align: center;
+            line-height: 15px;
+            color: black;
+        }
+    </style>
+</head>
+<body onLoad="loading_script()">
+    <div id="outer" style="border:1px solid;width:200px;height:10px;overflow:hidden;margin:120px auto -120px auto"><div id="inner" style="background-color:#0F67A1;height:100%;width:0%;"></div></div>
+    <div id="page_header">
+        <div id="tab_header" class="page_width icons app_visible" style="display:none;">
+            <a id="home_button" class="top_head_button icons" href="/index.htm">Home</a>
+            <a id="back_button" class="top_head_button icons" href="/index.htm">Back</a>
+            <h1>Registra Simulazione</h1> <!-- Rec simulator -->
+        </div>
+        <div id="head_menu" class="page_width" style="display:none">
+            <div id="page_menu" class="input">
+                <a id="menu_back" class="icons">&lt;</a>
+                <h2 id="menu_name"></h2>
+                <a id="menu_next" class="icons">&gt;</a>
+            </div>
+        </div>
+        <div id="fade_out" class="page_width icons">&nbsp;</div>
+    </div>
+    <div id="page" class="page_width hide_onload" style="display:none">
+        <div id="login_box" style="display:none;">
+            <p id="login_text">Inserire password utente</p>
+            <form id="login_form" action="javascript:void(0);">
+                <p>
+                    <input type="password" maxlength="10" size="10" name="code" class="login_input input" />
+                    <input type="image" src="/images/trans.png" value="Login" alt="Login" class="login_submit button icons" />
+                </p>
+            </form>
+        </div>
+        <div id="page_content" style="display:block;">
+            <div id="message_text"></div>
+            <div id="icons" class="environment_0"></div>
+        </div>
+    </div>
+    <div id="page_footer" class="app_visible" style="display:none;">
+        <div id="footer_content" class="page_width">
+            <a href="http://www.comelitgroup.com" id="comelit_logo" class="icons">Comelit Group S.p.A.</a>
+            <a id="logout" class="icons" href="javascript:SendLogout()">Logout</a>
+            <span id="life">Connessione...</span>
+            <span id="life_error" style="display:none"><!-- Errore: Connessione persa! --></span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var is_master = true;
+        var currentCat = {};
+        var login_type = 'dom';
+        var simStatus;
+        var dayOfWeek = ['DOM', 'LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB']
+        var progresstimer;
+        var simSelected = -1;
+
+        function loading_script() {
+            load_url.push(['/js/jscolor/jscolor.js', 'js']);
+            load_url.push(['/js/format.date.js', 'js']);
+            starting_load();
+        }
+
+        function start() {
+
+            startPollFile('/login.json', checkLoginSetup);
+            getStatus();
+  
+        }
+
+        function getStatus() {
+            pool_request = $.ajax({
+                url: 'http://192.168.1.53/svc/status',
+                type: 'GET',
+                dataType: 'json',
+                timeout: retryTime,
+                cache: false,
+                success: function (data) {
+                    simStatus = data;
+                    getCatalog();
+                },
+                error: function (data, textStatus, jqXHR) {
+                    $('#message_text').html(textStatus + ': ' + jqXHR);
+                },
+                statusCode: {
+                    404: function () {
+                        $('#message_text').html(textStatus + ': not found');
+                    }
+                }
+            });
+
+
+
+
+        }
+
+        function stopRec() {
+            pool_request = $.ajax({
+                url: 'http://192.168.1.53/svc/stop',
+                type: 'GET',
+                dataType: 'json',
+                timeout: retryTime,
+                cache: false,
+                success: function (data) {
+                    setTimeout(getStatus(), 1000);
+                },
+                error: function (data, textStatus, jqXHR) {
+                    $('#message_text').html(textStatus + ': ' + jqXHR);
+                },
+                statusCode: {
+                    404: function () {
+                        $('#message_text').html(textStatus + ': not found');
+                    }
+                }
+            });
+
+        }
+
+        function startRec(idx) {
+            pool_request = $.ajax({
+                url: 'http://192.168.1.53/svc/rec?idx='+idx,
+                type: 'GET',
+                dataType: 'json',
+                timeout: retryTime,
+                cache: false,
+                success: function (data) {
+                    setTimeout(getStatus(), 1000);
+                },
+                error: function (data, textStatus, jqXHR) {
+                    $('#message_text').html(textStatus + ': ' + jqXHR);
+                },
+                statusCode: {
+                    404: function () {
+                        $('#message_text').html(textStatus + ': not found');
+                    }
+                }
+            });
+
+        }
+
+
+
+        function getCatalog() {
+            pool_request = $.ajax({
+                url: 'http://192.168.1.53/svc/catalog',
+                type: 'GET',
+                dataType: 'json',
+                timeout: retryTime,
+                cache: false,
+                success: function (data) {
+                    currentCat = data;
+                    $('#icons').empty();
+                    for (var i = 0; i < currentCat.length; i++) {
+                        if (currentCat[i].weekstate.length > 0) {
+
+                            $('#icons').append(' <div><button id="button_icon_' + i + '" class="button bridge_button button_clima long_button button_status_' +
+                                (i == simStatus.catalogIdx && simStatus.status == 'rec' ? 'on' : 'off') + '"><span>' +
+                            currentCat[i].name + '</span></button></div><div class="clima_hide thermo" id="rec' + i + '" style="display: none;font-size:12px;" />');
+                                 
+
+                            if (i == simStatus.catalogIdx && simStatus.status == 'rec') {
+                                for (var i2 = 0; i2 < simStatus.weekdata.length; i2++) {
+                                    $('#rec' + i).append('<span class="button day day_' + simStatus.weekdata[i2] + '" >' + dayOfWeek[i2] + '</span>');
+                                }
+                                $('#rec' + i).append('<div class="recdetail">Registrazione in corso....<div id="myProgress"><div id="myBar"><div id="label">0%</div></div></div><br/>Inizio: ' + new Date(simStatus.startRec).format('dd/MM/yyyy HH:mm:ss') +
+                                    '<br/>Fine: ' + new Date(simStatus.stopRec).format('dd/MM/yyyy HH:mm:ss')
+                                + '<div/> ');
+
+                                $('#rec' + i).append('<div class="simcommand"><input id="stopbtn" type="button" class="button submit_button" value="STOP" /></div> ');
+                                moveProgress();
+                            }
+                            else {
+                                for (var i2 = 0; i2 < currentCat[i].weekstate.length; i2++) {
+                                    $('#rec' + i).append('<span class="button day day_' + currentCat[i].weekstate[i2] + '" >' + dayOfWeek[i2] + '</span>');
+                                }
+                                $('#rec' + i).append('<div class="simcommand"><input id="rec_btn_' + i + '" type="button" class="button submit_button" value="REC" /></div> ');
+                            }
+
+                        }
+                    }
+
+                    selectSim(simSelected);
+
+                    $('#stopbtn').click(function () {
+
+                        stopRec();
+                    });
+
+                    $('[id^=rec_btn]').click(function () {
+                        var num = $(this).attr('id').split('_')[2];
+                        startRec(num);
+                    });
+
+                    $('.bridge_button').click(function () {
+                        var num = $(this).attr('id').split('_')[2];
+
+                        selectSim(num);
+
+                    });
+
+                },
+                error: function (data, textStatus, jqXHR) {
+                    $('#message_text').html(textStatus + ': ' + jqXHR);
+                },
+                statusCode: {
+                    404: function () {
+                        $('#message_text').html(textStatus + ': not found');
+                    }
+                }
+            });
+
+
+        }
+
+        function selectSim(idx) {
+
+            if ($('#rec' + idx).css('display')) {
+                if ($('#rec' + idx).css('display') == 'none') {
+                    $('.clima_hide').hide();
+                    $('#rec' + idx).show();
+                    simSelected = idx;
+                }
+                else {
+                    $('.clima_hide').hide();
+                }
+            }
+        }
+
+        function moveProgress() {
+
+            clearInterval(progresstimer);
+            var width = 0;//97;// per simulare il raggiungimento del 100% 
+            progresstimer = setInterval(frame, 1000);
+
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(progresstimer);
+                    getCatalog();
+                } else {
+                    //width++; //  per simulare il raggiungimento del 100% 
+                    width = Math.round(Math.abs(new Date() - new Date(simStatus.startRec)) / Math.abs(new Date(simStatus.stopRec) - new Date(simStatus.startRec)) * 100*100)/100;
+                    $("#myBar").width(width + '%');
+                    $("#label").html(width * 1 + '%');
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

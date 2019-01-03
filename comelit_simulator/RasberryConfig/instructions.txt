@@ -1,0 +1,20 @@
+#create script:
+
+sudo nano /etc/init.d/domoticsvc
+
+#Write inside this script:
+
+cd /var/www/bridge/svc
+sudo node app.js
+
+#Save and close
+#Set running permission
+
+sudo chmod 755 /etc/init.d/domoticsvc
+
+#Register at startup
+sudo update-rc.d domoticsvc defaults
+
+
+Reference:
+http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html

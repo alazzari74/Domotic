@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- Fw: 2.5.1 svn://172.20.0.1:3693/bridgeSD/tags/2.5.1/application@7370 27/01/16 -->
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name='viewport' content='width=402, orientation=portrait, minimum-scale=0.5, maximum-scale=2.0' />
+		<script src="/js/load_file.js?ver=7370" type="text/javascript"></script>
+		<title>Bridge</title>
+	</head>
+	<body onLoad="starting_load()">
+		<div id="outer" style="border:1px solid;width:200px;height:10px;overflow:hidden;margin:120px auto -120px auto"><div id="inner" style="background-color:#0F67A1;height:100%;width:0%;"></div></div>
+		<div id="page_header" class="app_visible" style="display:none;">
+			<div id="tab_header" class="page_width icons">
+				<a id="home_button" class="top_head_button icons" style="display:none" href="/index.htm">Home</a>
+				<a id="back_button" class="top_head_button icons" style="display:none" href="">Back</a>
+				<h1>Bridge</h1>
+			</div>
+			<div id="head_info" class="page_width">
+				<div id="head_datetime">&nbsp;</div>
+				<div id="head_counter">&nbsp;</div>
+			</div>
+			<div id="fade_out" class="page_width icons">&nbsp;</div>
+		</div>
+		<div id="page" class="page_width hide_onload" style="display:none">
+			<div id="login_box" style="display:none;">
+				<p id="login_text">Inserire password utente</p>
+				<form id="login_form" action="javascript:void(0);"><p>
+						<input type="password" maxlength="10" size="10" name="code" class="login_input input" />
+						<input type="image" src="/images/trans.png" value="Login" alt="Login" class="login_submit button icons" />
+					</p></form>
+			</div>
+			<div id="page_content" style="display:none;">
+				<div id="home_content">
+					<a href="/user/none.htm" id="safe_link" class="home_button button app_visible" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Allarme</p> <!-- Allarme -->
+					</a>
+					<a href="/user/thermo.htm" id="clima_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Clima</p> <!-- Climate -->
+					</a>
+					<a href="/user/other.htm" id="other_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Altro</p> <!-- Other -->
+					</a>
+					<a href="/user/shutter.htm" id="shutter_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Tapparelle</p> <!-- Shutter -->
+					</a>
+					<a href="/user/light.htm" id="light_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Luci</p> <!-- Light -->
+					</a>
+					<a href="/user/irrigation.htm" id="irrigation_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Irrigazione</p> <!-- Irrigation -->
+					</a>
+					<a href="/user/automation.htm" id="automation_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Automazioni</p> <!-- Automation -->
+					</a>
+					<a href="/user/counter.htm" id="counter_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Consumi</p> <!-- Counter -->
+					</a>
+					<a href="/user/scenario.htm" id="scenario_link" class="home_button button" style="display:none;">
+						<span class="home_icon icons"></span>
+						<p>Scenari</p> <!-- Scenarios -->
+					</a>
+					<a href="/user/setup.htm" id="setup_link" class="home_button button">
+						<span class="home_icon icons"></span>
+						<p>Setup</p> <!-- Setup -->
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="page_footer" class="app_visible" style="display:none;">
+			<div id="footer_content" class="page_width">
+				<a href="http://www.comelitgroup.com" id="comelit_logo" class="icons">Comelit Group S.p.A.</a>
+				<a id="logout" class="icons" href="javascript:SendLogout()">Logout</a>
+				<span id="life">Connessione...</span>
+				<span id="life_error" style="display:none"><!-- Errore: Connessione persa! --></span>
+			</div>
+		</div>
+		<script type="text/javascript">
+			if (!(1)) {
+				window.location = '/language.htm';
+			}
+			var login_type = 'dom';
+			function start() {
+				startPollFile('/login.json', indexAuth);
+			}
+		</script>
+	</body>
+</html>

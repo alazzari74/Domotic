@@ -1,0 +1,8 @@
+il file default va posizionato in
+
+/etc/nginx/sites-available
+
+
+riavviare nginx
+
+sudo /etc/init.d/nginx restart

@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name='viewport' content='width=402, orientation=portrait, minimum-scale=0.5, maximum-scale=2.0' />
+    <script src="/js/load_file.js?ver=7370" type="text/javascript"></script>
+    <title>Bridge | Simulatore</title>
+</head>
+<body onLoad="loading_script()">
+    <div id="outer" style="border:1px solid;width:200px;height:10px;overflow:hidden;margin:120px auto -120px auto"><div id="inner" style="background-color:#0F67A1;height:100%;width:0%;"></div></div>
+    <div id="page_header" class="app_visible" style="display:none;">
+        <div id="tab_header" class="page_width icons">
+            <a id="home_button" class="top_head_button icons" href="/index.htm">Home</a>
+            <a id="back_button" class="top_head_button icons" href="/setup/index.htm">Back</a>
+            <h1>Simulatore</h1> <!-- Timers -->
+        </div>
+        <div id="fade_out" class="page_width icons">&nbsp;</div>
+    </div>
+    <div id="page" class="page_width hide_onload" style="display:none">
+        <div id="login_box" style="display:none;">
+            <p id="login_text">Inserire password installatore</p>
+            <form id="login_form" action="javascript:void(0);">
+                <p>
+                    <input type="password" maxlength="10" size="10" name="code" class="login_input input" />
+                    <input type="image" src="/images/trans.png" value="Login" alt="Login" class="login_submit button icons" />
+                </p>
+            </form>
+        </div>
+        <div id="page_content" style="display:none;">
+            <div id="message_text"></div>
+            <form action="javascript:void(0);" id="form_setup">
+                <input name="save" type="hidden" value="0" />
+                <div class="cell">
+                    <div class="col_sx">Numero registrazione:</div><!-- Timer number: -->
+                    <div class="col_dx">
+                        <select name="catselect" size="1"></select>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="col_sx">Nome:</div><!-- Description: -->
+                    <div class="col_dx">
+                        <input name="name" type="text" value="" size="15" maxlength="15" />
+                    </div>
+                </div>
+                <hr class="horizontal_rule" />
+
+                <div id="vis_day_rec">
+                    <div class="cell">
+                        <div class="col_sx">Giorni registrati:</div><!-- Authorised Days -->
+                        <div class="col_dx" name="daylog"></div>
+                        <hr class="horizontal_rule" />
+                        <div class="submit">
+                            <input id="save_btn" type="button" class="button submit_button" value="Salva" /> <!-- Submit -->
+                            <input id="delete_btn" type="button" class="button submit_button" value="Elimina" /> <!-- Submit -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="page_footer" class="app_visible" style="display:none;">
+        <div id="footer_content" class="page_width">
+            <a href="http://www.comelitgroup.com" id="comelit_logo" class="icons">Comelit Group S.p.A.</a>
+            <a id="logout" class="icons" href="javascript:SendLogout()">Logout</a>
+            <span id="life">Connessione...</span>
+            <span id="life_error" style="display:none"><!-- Errore: Connessione persa! --></span>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var login_type = 'adm';
+        var currentCat;
+
+        function loading_script() {
+            load_url.push(['/js/jscolor/jscolor.js', 'js']);
+            starting_load();
+        }
+
+        function saveCatalog(idx, name) {
+
+            pool_request = $.ajax({
+                url: 'http://192.168.1.53/svc/save?idx=' + idx + '&name=' + name,
+                type: 'GET',
+                dataType: 'json',
+                timeout: retryTime,
+                cache: false,
+                success: function (data) {
+                    if (data == "1")
+                        $('#message_text').html('Salvataggio avvenuto con successo');
+                    else
+                        $('#message_text').html('Salvataggio fallito');
+
+                    getCatalog();
+                },
+                error: function (data, textStatus, jqXHR) {
+                    $('#message_text').html(textStatus + ': ' + jqXHR);
+                },
+                statusCode: {
+                    404: function () {
+                        $('#message_text').html(textStatus + ': not found');
+                    }
+                }
+            });
+        }
+
+        function deleteCatalog(idx) {
+
+            pool_request = $.ajax({
+                url: 'http://192.168.1.53/svc/remove?idx=' + idx ,
+                type: 'GET',
+                dataType: 'json',
+                timeout: retryTime,
+                cache: false,
+                success: function (data) {
+                    if (data == "1")
+                        $('#message_text').html('Eliminazione avvenuta con successo');
+                    else
+                        $('#message_text').html('Eliminazione fallita');
+
+                    getCatalog();
+                },
+                error: function (data, textStatus, jqXHR) {
+                    $('#message_text').html(textStatus + ': ' + jqXHR);
+                },
+                statusCode: {
+                    404: function () {
+                        $('#message_text').html(textStatus + ': not found');
+                    }
+                }
+            });
+        }
+
+
+        function UpdateForm()
+        {
+            var selindex = $('[name=catselect] :selected').val();
+            if (currentCat.weekstate) {
+                $("[name=daylog]").html(
+                    'Domenica: ' + currentCat[selindex].weekstate[0] + "<br />" +
+                    'Lunedì: ' + currentCat[selindex].weekstate[1] + "<br />" +
+                    'Martedì: ' + currentCat[selindex].weekstate[2] + "<br />" +
+                    'Mercoledì: ' + currentCat[selindex].weekstate[3] + "<br />" +
+                    'Giovedì: ' + currentCat[selindex].weekstate[4] + "<br />" +
+                    'Venerdì: ' + currentCat[selindex].weekstate[5] + "<br />" +
+                    'Sabato: ' + currentCat[selindex].weekstate[6]);
+            }
+            else {
+                $("[name=daylog]").html('nessuno');
+            }
+
+            if (currentCat[selindex].name != null)
+                $('#delete_btn').show();
+            else
+                $('#delete_btn').hide();
+
+            $('[name=name]').val(currentCat[selindex].name);
+        
+        }
+
+        function getCatalog() {
+            pool_request = $.ajax({
+                url: 'http://192.168.1.53/svc/catalog',
+                type: 'GET',
+                dataType: 'json',
+                timeout: retryTime,
+                cache: false,
+                success: function (data) {
+                    currentCat = data;
+
+                    $('[name=catselect]').empty();
+                    for (var i = 0; i < currentCat.length; i++) {
+                        $('[name=catselect]').append('<option value="' + currentCat[i].index + '" >' + currentCat[i].index + ' - ' + currentCat[i].name + '</option>');
+                    }
+                 
+                    UpdateForm();
+                   
+                },
+                error: function (data, textStatus, jqXHR) {
+                    $('#message_text').html(textStatus + ': ' + jqXHR);
+                },
+                statusCode: {
+                    404: function () {
+                        $('#message_text').html(textStatus + ': not found');
+                    }
+                }
+            });
+
+
+        }
+
+
+        function start() {
+            getCatalog();
+
+         
+
+            $('[name=catselect]').change(function () {
+
+                UpdateForm();
+                $('#message_text').html('');
+             
+              
+            });
+
+            $("#save_btn").click(function (e) {
+
+                var selindex = $('[name=catselect] :selected').val();
+                saveCatalog(selindex, $('[name=name]').val());
+            });
+
+            $("#delete_btn").click(function (e) {
+                var selindex = $('[name=catselect] :selected').val();
+                deleteCatalog(selindex, $('[name=name]').val());
+            });
+          
+            $('#page_content').css('display', 'block');
+            $('[name=catselect]').val(0);
+
+            startPollFile('/login.json', checkLoginAdm);
+        }
+    </script>
+</body>
+</html>

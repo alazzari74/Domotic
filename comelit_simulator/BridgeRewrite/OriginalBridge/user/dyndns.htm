@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="x-ua-compatible" content="IE=edge" />
+		<meta name='viewport' content='width=402, orientation=portrait, minimum-scale=0.5, maximum-scale=2.0' />
+		<script src="/js/load_file.js?ver=7370" type="text/javascript"></script>
+		<title>Bridge | DNS dinamico</title>
+	</head>
+	<body onLoad="starting_load()">
+		<div id="outer" style="border:1px solid;width:200px;height:10px;overflow:hidden;margin:120px auto -120px auto"><div id="inner" style="background-color:#0F67A1;height:100%;width:0%;"></div></div>
+		<div id="page_header" class="app_visible" style="display:none;">
+			<div id="tab_header" class="page_width icons">
+				<a id="home_button" class="top_head_button icons" href="/index.htm">Home</a>
+				<a id="back_button" class="top_head_button icons" href="/user/setup.htm">Back</a>
+				<h1>DNS dinamico</h1> <!-- Dynamic DNS -->
+			</div>
+			<div id="fade_out" class="page_width icons">&nbsp;</div>
+		</div>
+		<div id="page" class="page_width hide_onload" style="display:none">
+			<div id="login_box" style="display:none;">
+				<p id="login_text">Inserire password utente</p>
+				<form id="login_form" action="javascript:void(0);"><p>
+						<input type="password" maxlength="10" size="10" name="code" class="login_input input" />
+						<input type="image" src="/images/trans.png" value="Login" alt="Login" class="login_submit button icons" />
+					</p></form>
+			</div>
+			<div id="page_content" style="display:none;">
+				<div id="message_text"></div>
+				<div id="dyndns_text" class="cell">Il client DNS non è abilitato</div>
+				<hr class="title_rule" />
+				<form action="javascript:void(0);" id="form_setup">
+					<div class="cell" class="vis_ddns">
+						<div class="col_sx">Abilita servizio DDNS:</div><!-- DDNS Enable: -->
+						<div class="col_dx">
+							<input type="checkbox" name="enable"  />
+						</div>
+					</div>
+					<hr class="horizontal_rule" />
+					<div class="cell vis_ddns">
+						<input name="save" type="hidden" value="0" />
+						<input name="current" type="hidden" value="" />
+						<input name="port" type="hidden" value="80" />
+						<div class="col_sx">Servzio DNS:</div><!-- Servizio DDNS: -->
+						<div class="col_dx">
+							<select name="server">
+								<option value="update.comelitdns.com">ComelitDNS (www.comelitdns.com)</option>
+								<option value="members.dyndns.org">DynDNS (www.dyndns.com)</option>
+								<option value="dynupdate.no-ip.com">No-IP (www.no-ip.com)</option>
+								<option value="updates.dnsomatic.com">DNS-O-Matic (www.dnsomatic.com)</option>
+								<option value="members.dyndns.it">DynDNS.it (www.dyndns.it)</option>
+							</select>
+						</div>
+					</div>
+					<div class="cell vis_comelit vis_ddns">
+						<a id="dyndns_link" class="button setup_link" href="http://www.comelitdns.com/subscribe?serial=D88039BEBB5C&act_code=B2D1B038897083ED&prod=20003101" target="_blank">Registrazione Comelit DNS</a>
+						<div class="col_sx">Codice DDNS:</div><div class="col_dx">D88039BEBB5C</div>
+						<div class="clear"></div>
+						<div class="col_sx">Codice attivazione:</div><div class="col_dx">B2D1B038897083ED</div>
+					</div>
+					<hr class="horizontal_rule vis_comelit vis_ddns" />
+					<div class="cell vis_comelit vis_ddns">
+						<div class="col_sx">Far East Area</div><!-- DDNS FE: -->
+						<div class="col_dx">
+							<input type="checkbox" name="dns_fe"  />
+						</div>
+					</div>
+					<hr class="horizontal_rule vis_ddns" />
+					<div class="cell vis_ddns">
+						<div class="col_sx">Indirizzo mail</div><!-- Username: -->
+						<div class="col_dx">
+							<input type="text" name="user" maxlength="40" value="" />
+						</div>
+						<div class="col_sx">(Indicare il nome utente di accesso al servizio)</div><!-- (Indicare il nome utente di accesso al servizio) -->
+					</div>
+					<hr class="horizontal_rule vis_ddns" />
+					<div class="cell vis_ddns">
+						<div class="col_sx">Password</div><!-- Password: -->
+						<div class="col_dx">
+							<input type="password" name="pass" maxlength="24" value="" />
+						</div>
+						<div class="col_sx">(Indicare la password di accesso al servizio)</div><!-- (Indicare la password di accesso al servizio) -->
+					</div>
+					<hr class="horizontal_rule vis_ddns" />
+					<div class="cell vis_ddns">
+						<div class="col_sx">Host</div><!-- Host: -->
+						<div class="col_dx">
+							<input type="text" name="host" maxlength="48" value="" />
+						</div>
+						<div class="col_sx">(Indicare il nome del dns)</div><!-- (Indicare il nome del dns) -->
+					</div>
+					<hr class="horizontal_rule vis_ddns" />
+					<div class="submit">
+						<input type="submit" class="button submit_button" value="Salva" /> <!-- Submit -->
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="page_footer" class="app_visible" style="display:none;">
+			<div id="footer_content" class="page_width">
+				<a href="http://www.comelitgroup.com" id="comelit_logo" class="icons">Comelit Group S.p.A.</a>
+				<a id="logout" class="icons" href="javascript:SendLogout()">Logout</a>
+				<span id="life">Connessione...</span>
+				<span id="life_error" style="display:none"><!-- Errore: Connessione persa! --></span>
+			</div>
+		</div>	
+		<script type="text/javascript">
+			var login_type = 'dom';
+			function start() {
+				$('[name=server]').val('');
+				
+				$("[name=enable], [name=server]").change(updateDDNS);
+
+				$("#form_setup").submit(function(e) {
+					sendConfigForm($(this), "dyndns");
+					e.preventDefault();
+					dyndnsStatus();
+				});
+				
+				updateDDNS();
+				startPollFile('/login.json', checkLoginSetup);
+				window.setInterval(dyndnsStatus, 5000);
+			}
+
+			function dyndnsStatus() {
+				$.get(location.protocol + "//" + location.host + '/setup/dyndns_status.cgi', function(data) {
+					$('#dyndns_text').html(data);
+				});
+			}
+		</script>
+	</body>
+</html>
