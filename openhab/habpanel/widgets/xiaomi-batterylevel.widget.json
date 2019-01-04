@@ -1,0 +1,27 @@
+{
+    "template": "<style>\n .battery_high .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n  }\n   .battery_low .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n  }\n   .battery_low span {color:red;}\n  \n   .battery_medium .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n  }\n  \n</style>\n\n<div >\n  {{ngModel.name}}\n</div>\n\n    <div ng-class=\"itemValue(config.battery_low_item) == 'NULL' || itemValue(config.battery_low_item) == 'ON'  || itemValue(config.battery_item) <= 10 ?'battery_low':itemValue(config.battery_item) >= 50?'battery_high':'battery_medium'\" ng-if=\"(config.battery_item) && itemValue(config.battery_item) != 'N/A'\"  style=\"float:center;font-size:3.0vw\">\n      <span ><widget-icon style=\"display:inline-block;width:5.0vw;\"; iconset=\"'smarthome-set'\" icon=\"'power'\" size=\"config.iconSize\" /></span><span>{{itemValue(config.battery_item) == 'NULL' ? '-': itemValue(config.battery_item)}}%</span>\n    </div>\n    \n</div>\n",
+    "name": "Xiaomi: Battery level",
+    "settings": [
+        {
+            "type": "item",
+            "id": "battery_item",
+            "label": "Battery: Item",
+            "default": "-"
+        },
+        {
+            "type": "item",
+            "id": "battery_low_item",
+            "label": "Battery Low: Item",
+            "default": "0"
+        },
+        {
+            "type": "number",
+            "id": "iconSize",
+            "label": "Icon size px",
+            "default": "-"
+        }
+    ],
+    "author": "Andrea Lazzari",
+    "source_url": "",
+    "readme_url": ""
+}
