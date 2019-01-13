@@ -98,22 +98,26 @@ gpio.on('change', function(channel, value) {
         {
                 if (value==false && FCstate==true)
                 {
-			DoorStatus='Door Opening';
+		            	DoorStatus='Door Opening';
                         console.log(DoorStatus);
                     
                         // Send mail with screenshot after 3 seconds
-                        setTimeout(function(){
+                 /*       setTimeout(function(){
                                 SendAlert('Garage Door Opening','La porta del garage si sta aprendo');
                          }, 3000);
-                         
+                   */      
                 }
                 else
                 {
                    if (value==true && FCstate==false)
                     {
-                        SendAlert('Garage Door Closed','La porta del garage si è chiusa');
                         DoorStatus='Door Closed';
                         console.log(DoorStatus);
+                  /*      setTimeout(function(){
+                            SendAlert('Garage Door Closed','La porta del garage si è chiusa');
+                     }, 3000);
+                    */    
+                        
                     }
                 }
 
@@ -134,7 +138,7 @@ gpio.on('change', function(channel, value) {
                     if (value==false && FAstate==true)
                     {
                         DoorStatus='Door Closing';
-			console.log(DoorStatus);
+			            console.log(DoorStatus);
                     }
                 }
 
@@ -249,16 +253,15 @@ function Switch (io, state)
                 console.log('Written pin:' + io + ' value:'+state);
         });
 
-        if (state==true && FCstate==true)
+     /*   if (state==true && FCstate==true)
         {
-                SendAlert('surveliancelazzahome@gmail.com','vale.penna79@gmail.com','Garage Door is opening','La porta del garage si sta aprendo');
                 setTimeout(function(){
                                 request("http://192.168.1.11:8080/cgi-bin/logical_input.cgi?name=OpGarageMobile", function(error, response, body) {
                                 console.log(body);
                                 });
                         }, 5000);
         }
-
+*/
 
 
 }
