@@ -1,0 +1,42 @@
+{
+    "template": "<div ng-style=\"{ 'background-color': (config.background)}\" style=\"top:0;bottom:0;left:0;right:0;position:absolute\" ng-init=\"model={ action_type: 'navigate', navigate_dashboard: (config.dashboard), name: itemValue(config.value) + (config.unit), foreground: (config.foreground),  font_size: (config.font_size) , backdrop_iconset: (config.backdrop_icon_iconset), backdrop_icon: (config.backdrop_icon), backdrop_center: 'true' }\">\n\t\t<widget-button ng-model=\"model\"></widget-button>\n</div>\t\n",
+    "settings": [
+        {
+            "type": "string",
+            "id": "dashboard",
+            "label": "Dashboard Name",
+            "description": "Dashboard to go when clicking on the button"
+        },
+        {
+            "type": "item",
+            "id": "value",
+            "label": "Displayed Item"
+        },
+        {
+            "type": "string",
+            "id": "unit",
+            "label": "Unit"
+        },
+        {
+            "type": "color",
+            "id": "background",
+            "label": "Background Color"
+        },
+        {
+            "type": "color",
+            "id": "foreground",
+            "label": "Font Color"
+        },
+        {
+            "type": "number",
+            "id": "font_size",
+            "label": "Font Size"
+        },
+        {
+            "type": "icon",
+            "id": "backdrop_icon",
+            "label": "Select Icon"
+        }
+    ],
+    "readme_url": "https://community.openhab.org/t/46045"
+}

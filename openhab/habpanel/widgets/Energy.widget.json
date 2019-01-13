@@ -1,0 +1,45 @@
+{
+    "template": "<style>\n .energy_low .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n  }\n   .energy_high .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n  }\n   .energy_high span {color:red;}\n  \n   .energy_medium .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n  }\n  \n</style>\n\n<div >\n  {{ngModel.name}}\n</div>\n<!---->\n    <div ng-class=\"itemValue(config.energy_item) <= config.mediumThreeshold ?'energy_low':itemValue(config.energy_item) >= config.highThreeshold?'energy_high':'energy_medium'\" ng-if=\"(config.energy_item) && itemValue(config.energy_item) != 'N/A'\"  style=\"float:center;font-size:3.0vw\">\n      <span ><widget-icon style=\"display:inline-block;width:5.0vw;\"; iconset=\"config.energyIcon_iconset\" icon=\"config.energyIcon\" size=\"config.iconSize\" /></span><span>{{itemValue(config.energy_item) == 'NULL' ? '-': itemValue(config.energy_item)}} {{config.energyUnit}}</span>\n    </div>\n    \n</div>\n",
+    "name": "Energy level",
+    "settings": [
+        {
+            "type": "item",
+            "id": "energy_item",
+            "label": "energy: Item",
+            "default": "-"
+        },
+        {
+            "type": "icon",
+            "id": "energyIcon",
+            "label": "Icona"
+        },
+        {
+            "type": "number",
+            "id": "iconSize",
+            "label": "Icon size px",
+            "default": "-"
+        },
+        {
+            "type": "choice",
+            "id": "energyUnit",
+            "choices": "Kw,Watt,%",
+            "default": "%",
+            "label": "Measure unit"
+        },
+        {
+            "type": "number",
+            "id": "mediumThreeshold",
+            "label": "Medium Energy Threeshold",
+            "default": "1500"
+        },
+        {
+            "type": "number",
+            "id": "highThreeshold",
+            "label": "High Energy Threeshold",
+            "default": "2500"
+        }
+    ],
+    "author": "Andrea Lazzari",
+    "source_url": "",
+    "readme_url": ""
+}
