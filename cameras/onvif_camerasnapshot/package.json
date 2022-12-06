@@ -8,7 +8,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.13.2",
+    "express": "^4.17.3",
     "node-onvif": "0.1.7",
     "url": "0.10.3"
   }
