@@ -1,0 +1,57 @@
+{
+    "author": "Andrea Lazzari",
+    "id": "Energy",
+    "name": "Energy level",
+    "readme_url": "",
+    "source_url": "",
+    "template": "<style>\n .energy_low .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n  }\n   .energy_high .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n  }\n   .energy_high span {color:red;}\n  \n   .energy_medium .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n  }\n  \n</style>\n\n\n<div >\n  {{ngModel.name}}\n</div>\n<!---->\n    <div ng-class=\"itemValue(config.energy_item) <= config.mediumThreeshold ?'energy_low':itemValue(config.energy_item) >= config.highThreeshold?'energy_high':'energy_medium'\" ng-if=\"(config.energy_item) && itemValue(config.energy_item) != 'N/A'\"  style=\"float:center;font-size:3.0vw\">\n       <span ><widget-icon style=\"display:inline-block;width:5.0vw;\"; iconset=\"config.energyIcon_iconset\" icon=\"config.energyIcon\" size=\"config.iconSize\" /></span><span>{{'%.0f'|sprintf:itemValue(config.energy_item) == 'NULL' ? '-': itemValue(config.energy_item)}} {{config.energyUnit}}</span>\n    </div>\n    <div   style=\"float:center;font-size:1.2vw\"  >\n      <span style=\"float:left;\"  ng-if=\"config.energyKHwDay_item\">D: <span style=\"color: wheat;\"  >{{'%.1f'|sprintf:itemValue(config.energyKHwDay_item) == 'NULL' ? '-': itemValue(config.energyKHwDay_item)}}</span> KWh</span>\n       <span style=\"float:right;\" ng-if=\"config.energyKHwMonth_item\">M: <span style=\"color: wheat;\"  >{{'%.1f'|sprintf:itemValue(config.energyKHwMonth_item) == 'NULL' ? '-': itemValue(config.energyKHwMonth_item)}}</span> KWh</span>\n    </div>\n    \n\n</div>\n",
+    "settings": [
+        {
+            "default": "-",
+            "id": "energy_item",
+            "label": "energy: Item",
+            "type": "item"
+        },
+        {
+            "id": "energyIcon",
+            "label": "Icona",
+            "type": "icon"
+        },
+        {
+            "default": "-",
+            "id": "iconSize",
+            "label": "Icon size px",
+            "type": "number"
+        },
+        {
+            "choices": "Kw,Watt,%",
+            "default": "%",
+            "id": "energyUnit",
+            "label": "Measure unit",
+            "type": "choice"
+        },
+        {
+            "default": "1500",
+            "id": "mediumThreeshold",
+            "label": "Medium Energy Threeshold",
+            "type": "number"
+        },
+        {
+            "default": "2500",
+            "id": "highThreeshold",
+            "label": "High Energy Threeshold",
+            "type": "number"
+        },
+        {
+            "id": "energyKHwMonth_item",
+            "label": "Item Energia mese",
+            "type": "item"
+        },
+        {
+            "default": "",
+            "id": "energyKHwDay_item",
+            "label": "Item Energia giorno",
+            "type": "item"
+        }
+    ]
+}

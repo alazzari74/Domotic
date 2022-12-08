@@ -1,0 +1,68 @@
+{
+    "author": "Andrea Lazzari",
+    "id": "Energy_full",
+    "name": "Energy Full",
+    "readme_url": "",
+    "source_url": "",
+    "template": "<style>\n .e_low .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(35deg) saturate(1700%);\n  }\n  \n   .e_high .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(340deg) saturate(1700%);\n  }\n  \n   .e_high span {color:red;}\n  \n   .e_medium .icon-tile.colorize{\n  filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n-webkit-filter: invert(45%) sepia(100%) hue-rotate(20deg) saturate(1700%);\n  }\n  \n</style>\n\n<div class=\"padding-top:0\">\n   <div style=\"color: rgb( 252, 254, 255 ); font-size: {{config.name_fontSize}}px\">\n    <span>{{ngModel.name}}</span>\n   </div>\n  \n  <div class=\"row\" style=\"padding-top: {{config.spacer}}px;\">\n    <div class=\"col col-xs-3\" style=\"font-size: {{config.InstantPower_fontsize}}px\"  ng-class=\"itemValue(config.InstantPower_item) <= config.E_WarningValue ? 'e_low' : itemValue(config.InstantPower_item) >= config.E_AlertValue ? 'e_high':'e_medium'\"  >\n    <widget-icon ng-if=\"config.InstantPowerIcon_iconset\" style=\"display:{{ config.InstantPowerIcon == '' ? 'none':'inline-block' }};width:5.0vw;\"; iconset=\"config.InstantPowerIcon_iconset\" icon=\"config.InstantPowerIcon\" size=\"config.EIconSize\"  />\n  \t</div>\n\n    <div class=\"col col-xs-9 text-left\">\n       \t<span  style=\" font-size: {{config.InstantPower_fontsize}}px\">\n       {{'%.0f'|sprintf:itemValue(config.InstantPower_item) == 'NULL' ||  itemValue(config.InstantPower_item)== '' ? '-': itemValue(config.InstantPower_item)}} </span> Watt\n\n  </div>\n        <div class=\"col col-xs-9 text-left\"  ng-if=\"itemValue(config.InstantPower_item)==NULL\">\n       \t<span  style=\" font-size: {{config.InstantPower_fontsize}}px\">N/A</span> Watt\n\n  </div>\n   \n  \n   <div class=\"row\" style=\"padding-top:10px;\">\n  <!--   <div class=\"col col-xs-2\" style=\"font-size: {{config.energyKWh_fontsize}}px; \" >\n  \t\t\t <widget-icon style=\"display:{{ config.energyIcon == '' ? 'none':'inline-block' }};width:5.0vw;\"; iconset=\"config.energyIcon_iconset\" icon=\"config.energyIcon\" size=\"config.EIconSize\" />\n</div>  -->\t\n    <div class=\"col col-xs-12 text-left \" style=\"font-size: {{config.energyKWh_fontsize}}px;\" >\n       \t<div style=\"padding-left:10px;padding-right:10px\">\n        <span style=\"float:left; \" >D/M: <span style=\"color: wheat;padding-left:10px\" >{{ '%.1f'|sprintf:itemValue(config.energyKWh_item) == 'NULL' ? '-': itemValue(config.energyKWh_item)}}</span>&nbsp;/&nbsp;</span> \n  \t\t  <span style=\"color: wheat;\" >{{'%.1f'|sprintf: itemValue(config.energyMonthKWh_item) == 'NULL' ? '-': itemValue(config.energyMonthKWh_item)}} <span style=\"color: white;\" >KWh</span></span>\n    </div>\n  </div>\n  \n  \n  \n    \n\n</div>\n",
+    "settings": [
+        {
+            "default": "30",
+            "id": "name_fontSize",
+            "label": "Title Font Size",
+            "type": "number"
+        },
+        {
+            "default": "-",
+            "id": "InstantPower_item",
+            "label": "Instant power Item",
+            "type": "item"
+        },
+        {
+            "id": "InstantPowerIcon",
+            "label": "Icona",
+            "type": "icon"
+        },
+        {
+            "default": "-",
+            "description": "18",
+            "id": "EIconSize",
+            "label": "Icon size px",
+            "type": "number"
+        },
+        {
+            "default": "30",
+            "id": "InstantPower_fontsize",
+            "label": "Instant Power font Size",
+            "type": "number"
+        },
+        {
+            "default": "200",
+            "id": "E_WarningValue",
+            "label": "Instant Power Warning Threeshold",
+            "type": "number"
+        },
+        {
+            "default": "1000",
+            "id": "E_AlertValue",
+            "label": "Instant Power AlertThreeshold",
+            "type": "number"
+        },
+        {
+            "id": "energyKWh_item",
+            "label": "Energy Item",
+            "type": "item"
+        },
+        {
+            "default": "30",
+            "id": "energyKWh_fontsize",
+            "label": "Energy KWh Font size",
+            "type": "number"
+        },
+        {
+            "id": "energyMonthKWh_item",
+            "label": "KWh Month Item",
+            "type": "item"
+        }
+    ]
+}
